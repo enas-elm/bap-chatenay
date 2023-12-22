@@ -7,8 +7,6 @@ const Dashboard = () => {
             <h1>Commencer votre test sur l'usure professionnelle </h1>
 
             <div className="mt-5">
-                <h2>My profile</h2>
-                <p>My profile</p>
             </div>
         </MaxWidthWrapper>
     )
