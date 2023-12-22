@@ -4,7 +4,7 @@ const Dashboard = () => {
 
     return (
         <MaxWidthWrapper className="mt-5">
-            <h1>Commencer votre test sur l'usure professionnelle </h1>
+            <h1 className="text-2xl font-bold">Êtes-vous en usure professionnel ?</h1>
 
             <div className="mt-5">
             </div>
