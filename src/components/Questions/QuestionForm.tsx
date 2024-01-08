@@ -14,7 +14,7 @@ export const QuestionForm = ({ step, onNextStep }: QuestionFormProps) => {
             case 0:
                 return <QuestionIntro onNextStep={onNextStep} />;
             case 1:
-                return <QuestionInformationPersonnelles />;
+                return <QuestionInformationPersonnelles onNextStep={onNextStep} />;
             default:
                 return <div>Fin du formulaire</div>;
         }
