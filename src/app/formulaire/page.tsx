@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { ProgressBar } from '@/components/ProgressBar';
-import { QuestionForm } from '@/components/Questions/QuestionForm';
+import { QuestionForm } from '@/components/QuestionForm';
 import { ResponseType } from '@/types/Form';
 import Image from "next/image";
 

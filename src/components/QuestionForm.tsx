@@ -1,6 +1,6 @@
 // components/QuestionForm.tsx
-import { QuestionInformationPersonnelles } from "./InformationPersonnelles";
-import { QuestionIntro } from "./intro";
+import { QuestionInformationPersonnelles } from "./Questions/InformationPersonnelles.tsx.jsx";
+import { QuestionIntro } from "./Questions/Introductions.tsx.jsx";
 
 type QuestionFormProps = {
     step: number;
