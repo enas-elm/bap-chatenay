@@ -5,15 +5,14 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 
 type QuestionIntroProps = {
-    onNextStep: (response: ResponseType) => void;
+    onNextStep: () => void;
 };
 
 export const QuestionIntro: React.FC<QuestionIntroProps> = ({ onNextStep }) => {
-    const [response, setResponse] = useState<ResponseType>('default');
-
-    const handleSubmit = () => {
-        onNextStep(response);
+    const handleStart = () => {
+        onNextStep();
     };
+
     return (
         <div className="flex flex-col justify-between h-full">
             <div className="flex flex-col gap-2">
@@ -31,7 +30,7 @@ export const QuestionIntro: React.FC<QuestionIntroProps> = ({ onNextStep }) => {
                 <Link href={"/"}>
                     <Button variant={"secondary"}>Revenir à l’accueil</Button>
                 </Link>
-                <Button onClick={handleSubmit}>Commencer</Button>
+                <Button onClick={handleStart}>Commencer</Button>
             </div>
         </div >
     );
