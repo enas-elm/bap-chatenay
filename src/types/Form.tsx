@@ -7,7 +7,11 @@ export type InformationPersonnelles = {
 };
 
 export type HorairesDeTravail = {
-    // ... structure de vos champs pour HorairesDeTravail
+    moyenDeTransport: string;
+    horairesIrreguliers: boolean;
+    tempsTrajet: string | number;
+    heuresSupplementaires: boolean;
+    heuresTravailSemaine: number;
 };
 export type LEnvironnement = {
     // ... structure de vos champs pour HorairesDeTravail

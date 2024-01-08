@@ -9,13 +9,14 @@ import { Button } from "@/components/ui/button"
 import {
     Form,
     FormControl,
+    FormDescription,
     FormField,
     FormItem,
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { InformationPersonnelles } from "@/types/Form";
+import { HorairesDeTravail } from "@/types/Form";
 
 import {
     Select,
@@ -24,32 +25,37 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import { Toggle } from "@/components/ui/toggle"
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
+
+import Link from "next/link"
 
 
 
 type HorairesDeTravailProps = {
-    onNextStep: (response?: InformationPersonnelles) => void;
+    onNextStep: (response?: HorairesDeTravail) => void;
     onPreviousStep: () => void;
 };
 
+const transportOptions = ["Voiture", "Transport en commun", "Vélo", "Marche", "Autre"];
+
 export const QuestionHorairesDeTravail: React.FC<HorairesDeTravailProps> = ({ onNextStep, onPreviousStep }) => {
     const formSchema = z.object({
-        nom: z.string().min(2, { message: "Le nom doit contenir au moins 2 caractères." }),
-        prenom: z.string().min(2, { message: "Le prénom doit contenir au moins 2 caractères." }),
-        phone: z.string().min(10, { message: "Le numéro de téléphone doit contenir au moins 10 chiffres." })
-            .regex(/^\+?[0-9]+$/, { message: "Le format du numéro de téléphone est invalide." }),
-        email: z.string().email({ message: "L'email n'est pas valide." }),
-        job: z.string().min(2, { message: "La profession doit contenir au moins 2 caractères." }),
+        moyenDeTransport: z.enum(["Voiture", "Transport en commun", "Vélo", "Marche", "Autre", ""]),
+        horairesIrreguliers: z.boolean(),
+        tempsTrajet: z.union([z.string(), z.number().positive()]),
+        heuresSupplementaires: z.boolean(),
+        heuresTravailSemaine: z.number().min(0).max(168)
     });
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            nom: "",
-            prenom: "",
-            phone: "",
-            email: "",
-            job: "",
+            moyenDeTransport: "",
+            horairesIrreguliers: false,
+            tempsTrajet: "",
+            heuresSupplementaires: false,
+            heuresTravailSemaine: 0,
         },
     })
 
@@ -67,18 +73,125 @@ export const QuestionHorairesDeTravail: React.FC<HorairesDeTravailProps> = ({ on
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 pt-28 flex flex-col justify-between h-full">
 
-                        <div>
-                            <Select>
-                                <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Theme" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="light">Light</SelectItem>
-                                    <SelectItem value="dark">Dark</SelectItem>
-                                    <SelectItem value="system">System</SelectItem>
-                                </SelectContent>
-                            </Select>
+                        <div className="from-wrapper flex gap-11 w-full">
+                            <div className="form-item w-1/2">
+                                <FormField
+                                    control={form.control}
+                                    name="moyenDeTransport"
+                                    render={({ field }) => (
+                                        <FormItem className="flex flex-col gap-4">
+                                            <FormLabel>Comment vous rendez-vous au travail ?</FormLabel>
+                                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                <FormControl>
+                                                    <SelectTrigger>
+                                                        <SelectValue placeholder="Sélectionner votre mode de déplacement" />
+                                                    </SelectTrigger>
+                                                </FormControl>
+                                                <SelectContent>
+                                                    {transportOptions.map((option) => (
+                                                        <SelectItem key={option} value={option}>
+                                                            {option}
+                                                        </SelectItem>
+                                                    ))}
+                                                </SelectContent>
+                                            </Select>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
 
+                            <div className="form-item w-1/2">
+                                <FormField
+                                    control={form.control}
+                                    name="tempsTrajet"
+                                    render={({ field }) => (
+                                        <FormItem className="flex flex-col gap-4">
+                                            <FormLabel>Combien de temps vous prends le trajet pour le travail ?</FormLabel>
+                                            <FormControl>
+                                                <Input placeholder="Indiquer votre temps de trajet" {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="from-wrapper flex gap-11 w-full">
+                            <div className="form-item w-1/2">
+                                <FormField
+                                    control={form.control}
+                                    name="horairesIrreguliers"
+                                    render={({ field }) => (
+                                        <FormItem className="flex flex-col gap-4">
+                                            <FormLabel>Vos horaires de travail sont-elles irrégulières ?</FormLabel>
+                                            <ToggleGroup size={"lg"} type="single" variant='outline'>
+                                                <ToggleGroupItem
+                                                    value="true"
+                                                    aria-label="Oui"
+                                                >
+                                                    Oui
+                                                </ToggleGroupItem>
+                                                <ToggleGroupItem
+                                                    value="false"
+                                                    aria-label="Non"
+                                                >
+                                                    Non
+                                                </ToggleGroupItem>
+                                            </ToggleGroup>
+
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+
+                            <div className="form-item w-1/2">
+                                <FormField
+                                    control={form.control}
+                                    name="moyenDeTransport"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Vous arrive-t-il fréquemment de faire des heures supplémentaires  ?</FormLabel>
+                                            <ToggleGroup size={"lg"} type="single" variant='outline'>
+                                                <ToggleGroupItem
+                                                    value="true"
+                                                    aria-label="Oui"
+                                                >
+                                                    Oui
+                                                </ToggleGroupItem>
+                                                <ToggleGroupItem
+                                                    value="false"
+                                                    aria-label="Non"
+                                                >
+                                                    Non
+                                                </ToggleGroupItem>
+                                            </ToggleGroup>
+
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="from-wrapper flex gap-11 w-full">
+                            <div className="form-item w-1/2">
+                                <FormField
+                                    control={form.control}
+                                    name="heuresTravailSemaine"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Combien d’heures travaillez-vous en moyenne dans la semaine ?</FormLabel>
+                                            <FormControl>
+                                                <Input placeholder="Indiquer votre taux horaire" {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
                         </div>
 
                         <div className="form-actions flex justify-between w-full pb-28">
