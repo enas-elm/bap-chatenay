@@ -1,14 +1,18 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper"
+import Navbar from "@/components/Navbar"
 
 const Dashboard = () => {
 
     return (
-        <MaxWidthWrapper className="mt-5">
-            <h1 className="text-2xl font-bold">Êtes-vous en usure professionnel ?</h1>
+        <>
+            <Navbar />
+            <MaxWidthWrapper className="mt-5">
+                <h1 className="text-2xl font-bold">Êtes-vous en usure professionnel ?</h1>
 
-            <div className="mt-5">
-            </div>
-        </MaxWidthWrapper>
+                <div className="mt-5">
+                </div>
+            </MaxWidthWrapper>
+        </>
     )
 }
 
