@@ -5,11 +5,17 @@ import { ProgressBar } from '@/components/ProgressBar';
 import { QuestionForm } from '@/components/Questions/QuestionForm';
 import Image from "next/image";
 
+type ResponseType = string;
+
 const FormPage = () => {
     const [currentStep, setCurrentStep] = useState(0);
+    const [responses, setResponses] = useState<ResponseType[]>([]);
 
-    const onNextStep = () => {
-        setCurrentStep((prevStep) => prevStep + 1);
+    const onNextStep = (response: ResponseType) => {
+        // Ajoutez la réponse de l'étape actuelle dans le tableau des réponses
+        setResponses(current => [...current, response]);
+        // Passez à l'étape suivante
+        setCurrentStep(current => current + 1);
     };
 
     return (

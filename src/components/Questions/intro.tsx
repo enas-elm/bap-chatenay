@@ -1,8 +1,19 @@
 // components/QuestionForm.tsx
-
+'use client'
+import { useState } from "react";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
-export const QuestionIntro = () => {
+type QuestionIntroProps = {
+    onNextStep: (response: ResponseType) => void;
+};
+
+export const QuestionIntro: React.FC<QuestionIntroProps> = ({ onNextStep }) => {
+    const [response, setResponse] = useState<ResponseType>('default');
+
+    const handleSubmit = () => {
+        onNextStep(response);
+    };
     return (
         <div className="flex flex-col justify-between h-full">
             <div className="flex flex-col gap-2">
@@ -17,9 +28,11 @@ export const QuestionIntro = () => {
             </div>
 
             <div className="flex justify-between w-full pb-28">
-                <Button variant={"secondary"}>Revenir à l’accueil</Button>
-                <Button>Commencer</Button>
+                <Link href={"/"}>
+                    <Button variant={"secondary"}>Revenir à l’accueil</Button>
+                </Link>
+                <Button onClick={handleSubmit}>Commencer</Button>
             </div>
-        </div>
+        </div >
     );
 };
