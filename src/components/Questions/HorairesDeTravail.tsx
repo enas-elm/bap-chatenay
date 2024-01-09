@@ -28,9 +28,6 @@ import {
 import { Toggle } from "@/components/ui/toggle"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 
-import Link from "next/link"
-
-
 
 type HorairesDeTravailProps = {
     onNextStep: (response?: HorairesDeTravail) => void;
@@ -42,25 +39,26 @@ const transportOptions = ["Voiture", "Transport en commun", "Vélo", "Marche", "
 export const QuestionHorairesDeTravail: React.FC<HorairesDeTravailProps> = ({ onNextStep, onPreviousStep }) => {
     const formSchema = z.object({
         moyenDeTransport: z.enum(["Voiture", "Transport en commun", "Vélo", "Marche", "Autre", ""]),
-        horairesIrreguliers: z.boolean(),
         tempsTrajet: z.union([z.string(), z.number().positive()]),
-        heuresSupplementaires: z.boolean(),
-        heuresTravailSemaine: z.number().min(0).max(168)
+        horairesIrreguliers: z.string(),
+        heuresSupplementaires: z.string(),
+        heuresTravailSemaine: z.string().min(0).max(168).regex(/^[0-9]+$/),
     });
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             moyenDeTransport: "",
-            horairesIrreguliers: false,
             tempsTrajet: "",
-            heuresSupplementaires: false,
-            heuresTravailSemaine: 0,
+            horairesIrreguliers: "",
+            heuresSupplementaires: "",
+            heuresTravailSemaine: "",
         },
     })
 
     // 2. Define a submit handler.
     const onSubmit = (values: z.infer<typeof formSchema>) => {
+        console.log(values);
         onNextStep(values);
     };
 
@@ -126,21 +124,12 @@ export const QuestionHorairesDeTravail: React.FC<HorairesDeTravailProps> = ({ on
                                     render={({ field }) => (
                                         <FormItem className="flex flex-col gap-4">
                                             <FormLabel>Vos horaires de travail sont-elles irrégulières ?</FormLabel>
-                                            <ToggleGroup size={"lg"} type="single" variant='outline'>
-                                                <ToggleGroupItem
-                                                    value="true"
-                                                    aria-label="Oui"
-                                                >
-                                                    Oui
-                                                </ToggleGroupItem>
-                                                <ToggleGroupItem
-                                                    value="false"
-                                                    aria-label="Non"
-                                                >
-                                                    Non
-                                                </ToggleGroupItem>
-                                            </ToggleGroup>
-
+                                            <FormControl>
+                                                <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"}>
+                                                    <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>
+                                                    <ToggleGroupItem value="false" className="hover:bg-primary hover:text-white">Non</ToggleGroupItem>
+                                                </ToggleGroup>
+                                            </FormControl>
                                             <FormMessage />
                                         </FormItem>
                                     )}
@@ -150,25 +139,16 @@ export const QuestionHorairesDeTravail: React.FC<HorairesDeTravailProps> = ({ on
                             <div className="form-item w-1/2">
                                 <FormField
                                     control={form.control}
-                                    name="moyenDeTransport"
+                                    name="heuresSupplementaires"
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormLabel>Vous arrive-t-il fréquemment de faire des heures supplémentaires  ?</FormLabel>
-                                            <ToggleGroup size={"lg"} type="single" variant='outline'>
-                                                <ToggleGroupItem
-                                                    value="true"
-                                                    aria-label="Oui"
-                                                >
-                                                    Oui
-                                                </ToggleGroupItem>
-                                                <ToggleGroupItem
-                                                    value="false"
-                                                    aria-label="Non"
-                                                >
-                                                    Non
-                                                </ToggleGroupItem>
-                                            </ToggleGroup>
-
+                                            <FormControl>
+                                                <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"}>
+                                                    <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>
+                                                    <ToggleGroupItem value="false" className="hover:bg-primary hover:text-white">Non</ToggleGroupItem>
+                                                </ToggleGroup>
+                                            </FormControl>
                                             <FormMessage />
                                         </FormItem>
                                     )}

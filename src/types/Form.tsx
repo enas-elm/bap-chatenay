@@ -8,10 +8,10 @@ export type InformationPersonnelles = {
 
 export type HorairesDeTravail = {
     moyenDeTransport: string;
-    horairesIrreguliers: boolean;
     tempsTrajet: string | number;
-    heuresSupplementaires: boolean;
-    heuresTravailSemaine: number;
+    horairesIrreguliers: string;
+    heuresSupplementaires: string;
+    heuresTravailSemaine: string | number;
 };
 export type LEnvironnement = {
     // ... structure de vos champs pour HorairesDeTravail
