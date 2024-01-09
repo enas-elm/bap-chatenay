@@ -17,7 +17,8 @@ export const QuestionForm = ({ step, onNextStep, onPreviousStep }: QuestionFormP
     const renderQuestionComponent = () => {
         switch (step) {
             case 0:
-                return <QuestionIntro onNextStep={onNextStep} />;
+                return <Resultat />
+            // return <QuestionIntro onNextStep={onNextStep} />;
             case 1:
                 return <QuestionInformationPersonnelles onNextStep={onNextStep} onPreviousStep={onPreviousStep} />;
             case 2:
