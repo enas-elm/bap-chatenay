@@ -32,8 +32,16 @@ const FormPage = () => {
                 return 'Introduction';
             case 1:
                 return 'InformationPersonnelles';
+            case 2:
+                return 'HorairesDeTravail';
+            case 3:
+                return 'LEnvironnement';
+            case 4:
+                return 'LEffortMental';
+            case 5:
+                return 'SatisfactionEtEvolutionDeCarriere';
             default:
-                return 'UnknownStep';
+                return 'Resultat';
         }
     };
 

@@ -64,7 +64,7 @@ export const QuestionLEffortMental: React.FC<LEffortMentalProps> = ({ onNextStep
                                         <FormItem className="flex flex-col gap-4">
                                             <FormLabel>Votre espace de travail est-il inadapté ? (restreint, encombré... )</FormLabel>
                                             <FormControl>
-                                                <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"}>
+                                                <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} variant={"outline"}>
                                                     <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>
                                                     <ToggleGroupItem value="false" className="hover:bg-primary hover:text-white">Non</ToggleGroupItem>
                                                 </ToggleGroup>
@@ -83,7 +83,7 @@ export const QuestionLEffortMental: React.FC<LEffortMentalProps> = ({ onNextStep
                                         <FormItem className="flex flex-col gap-4">
                                             <FormLabel>Etes-vous exposer à des produits (toxiques, poussières) ?</FormLabel>
                                             <FormControl>
-                                                <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"}>
+                                                <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} variant={"outline"}>
                                                     <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>
                                                     <ToggleGroupItem value="false" className="hover:bg-primary hover:text-white">Non</ToggleGroupItem>
                                                 </ToggleGroup>
@@ -104,7 +104,7 @@ export const QuestionLEffortMental: React.FC<LEffortMentalProps> = ({ onNextStep
                                         <FormItem className="flex flex-col gap-4">
                                             <FormLabel>Etes-vous exposer à des vibrations du corps entier (conduite) ou membres supérieurs (outils vibrants) ?</FormLabel>
                                             <FormControl>
-                                                <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"}>
+                                                <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} variant={"outline"}>
                                                     <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>
                                                     <ToggleGroupItem value="false" className="hover:bg-primary hover:text-white">Non</ToggleGroupItem>
                                                 </ToggleGroup>

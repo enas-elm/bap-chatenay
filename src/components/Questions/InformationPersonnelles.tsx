@@ -13,6 +13,7 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { Input } from "@/components/ui/input"
 import { InformationPersonnelles } from "@/types/Form";
 
@@ -25,21 +26,26 @@ type InformationPersonnellesProps = {
 
 export const QuestionInformationPersonnelles: React.FC<InformationPersonnellesProps> = ({ onNextStep, onPreviousStep }) => {
     const formSchema = z.object({
+        gender: z.string(),
         nom: z.string().min(2, { message: "Le nom doit contenir au moins 2 caractères." }),
         prenom: z.string().min(2, { message: "Le prénom doit contenir au moins 2 caractères." }),
         phone: z.string().min(10, { message: "Le numéro de téléphone doit contenir au moins 10 chiffres." })
             .regex(/^\+?[0-9]+$/, { message: "Le format du numéro de téléphone est invalide." }),
         email: z.string().email({ message: "L'email n'est pas valide." }),
+        birthdate: z.string().min(10, { message: "La date de naissance doit être au format jj/mm/aaaa." })
+            .regex(/^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/\d{4}$/, { message: "La date de naissance doit être au format jj/mm/aaaa." }),
         job: z.string().min(2, { message: "La profession doit contenir au moins 2 caractères." }),
     });
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
+            gender: "",
             nom: "",
             prenom: "",
             phone: "",
             email: "",
+            birthdate: "",
             job: "",
         },
     })
@@ -58,6 +64,30 @@ export const QuestionInformationPersonnelles: React.FC<InformationPersonnellesPr
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 pt-28 flex flex-col justify-between h-full">
                         <div className="from-container flex flex-col gap-10">
+
+                            <div className="from-wrapper flex gap-11 w-full">
+                                <div className="form-item w-1/2">
+                                    <FormField
+                                        control={form.control}
+                                        name="gender"
+                                        render={({ field }) => (
+                                            <FormItem className="flex flex-col gap-4">
+                                                <FormLabel>Votre Gender</FormLabel>
+                                                <FormControl>
+                                                    <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} className="flex gap-8" variant={"outline"}>
+                                                        <ToggleGroupItem value="Homme" className="hover:bg-primary hover:text-white">Homme</ToggleGroupItem>
+                                                        <ToggleGroupItem value="Femme" className="hover:bg-primary hover:text-white">Femme</ToggleGroupItem>
+                                                        <ToggleGroupItem value="Autre" className="hover:bg-primary hover:text-white">Autre</ToggleGroupItem>
+                                                    </ToggleGroup>
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+                            </div>
+
+
                             <div className="from-wrapper flex gap-11 w-full">
                                 <div className="form-item w-1/2">
                                     <FormField
@@ -100,7 +130,7 @@ export const QuestionInformationPersonnelles: React.FC<InformationPersonnellesPr
                                         name="phone"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel>Téléphone</FormLabel>
+                                                <FormLabel>Votre Téléphone</FormLabel>
                                                 <FormControl>
                                                     <Input placeholder="06 12 34 56 78" {...field} />
                                                 </FormControl>
@@ -116,7 +146,7 @@ export const QuestionInformationPersonnelles: React.FC<InformationPersonnellesPr
                                         name="email"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel>Email</FormLabel>
+                                                <FormLabel>Votre Email</FormLabel>
                                                 <FormControl>
                                                     <Input placeholder="JohnDoe@gmail.com" {...field} />
                                                 </FormControl>
@@ -131,10 +161,26 @@ export const QuestionInformationPersonnelles: React.FC<InformationPersonnellesPr
                                 <div className="form-item w-1/2">
                                     <FormField
                                         control={form.control}
+                                        name="birthdate"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Votre date de naissance</FormLabel>
+                                                <FormControl>
+                                                    <Input placeholder="DD/MM/YYYY" {...field} />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+
+                                <div className="form-item w-1/2">
+                                    <FormField
+                                        control={form.control}
                                         name="job"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel>Profession</FormLabel>
+                                                <FormLabel>Votre Profession</FormLabel>
                                                 <FormControl>
                                                     <Input placeholder="Profession" {...field} />
                                                 </FormControl>

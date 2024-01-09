@@ -124,7 +124,7 @@ export const QuestionHorairesDeTravail: React.FC<HorairesDeTravailProps> = ({ on
                                         <FormItem className="flex flex-col gap-4">
                                             <FormLabel>Vos horaires de travail sont-elles irrégulières ?</FormLabel>
                                             <FormControl>
-                                                <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"}>
+                                                <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} variant={"outline"}>
                                                     <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>
                                                     <ToggleGroupItem value="false" className="hover:bg-primary hover:text-white">Non</ToggleGroupItem>
                                                 </ToggleGroup>
@@ -143,7 +143,7 @@ export const QuestionHorairesDeTravail: React.FC<HorairesDeTravailProps> = ({ on
                                         <FormItem>
                                             <FormLabel>Vous arrive-t-il fréquemment de faire des heures supplémentaires  ?</FormLabel>
                                             <FormControl>
-                                                <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"}>
+                                                <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} variant={"outline"}>
                                                     <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>
                                                     <ToggleGroupItem value="false" className="hover:bg-primary hover:text-white">Non</ToggleGroupItem>
                                                 </ToggleGroup>
