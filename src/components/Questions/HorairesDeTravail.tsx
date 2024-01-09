@@ -37,11 +37,13 @@ const transportOptions = ["Voiture", "Transport en commun", "Vélo", "Marche", "
 
 export const QuestionHorairesDeTravail: React.FC<HorairesDeTravailProps> = ({ onNextStep, onPreviousStep }) => {
     const formSchema = z.object({
-        moyenDeTransport: z.enum(["Voiture", "Transport en commun", "Vélo", "Marche", "Autre", ""]),
-        tempsTrajet: z.union([z.string(), z.number().positive()]),
-        horairesIrreguliers: z.string(),
-        heuresSupplementaires: z.string(),
-        heuresTravailSemaine: z.string().min(0).max(168).regex(/^[0-9]+$/),
+        moyenDeTransport: z.string().regex(/Voiture|Transport en commun|Vélo|Marche|Autre/, { message: "Veuillez indiquer votre moyen de transport." }),
+        // le regex doit prendre en compte cest format la 1h, 1min, 1s et 1h30, 1min30, 1s30 ou 1h30min, 1h30s, 1min30s ect
+        tempsTrajet: z.string().regex(/^[0-9]{1,2}h[0-9]{1,2}min$|^[0-9]{1,2}h$|^[0-9]{1,2}min$|^[0-9]{1,2}s$|^[0-9]{1,2}h[0-9]{1,2}min[0-9]{1,2}s$|^[0-9]{1,2}h[0-9]{1,2}s$|^[0-9]{1,2}min[0-9]{1,2}s$/, { message: "Veuillez indiquer votre temps de trajet." }),
+        horairesIrreguliers: z.string().regex(/true|false/, { message: "Veuillez indiquer si vos horaires sont irréguliers oui ou non" }),
+        heuresSupplementaires: z.string().regex(/true|false/, { message: "Veuillez indiquer si vous faites des heures supplémentaires oui ou non" }),
+        heuresTravailSemaine: z.string()
+            .regex(/^[0-9]{1,2}h$|^[0-9]{1,2}min$|^[0-9]{1,2}s$|^[0-9]{1,2}h[0-9]{1,2}min$|^[0-9]{1,2}h[0-9]{1,2}s$|^[0-9]{1,2}min[0-9]{1,2}s$/, { message: "Veuillez indiquer votre temps de trajet." }),
     });
 
     const form = useForm<z.infer<typeof formSchema>>({

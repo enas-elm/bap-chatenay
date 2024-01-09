@@ -26,7 +26,7 @@ type InformationPersonnellesProps = {
 
 export const QuestionInformationPersonnelles: React.FC<InformationPersonnellesProps> = ({ onNextStep, onPreviousStep }) => {
     const formSchema = z.object({
-        gender: z.enum(['Homme', 'Femme', 'Autre', ''], { required_error: "Veuillez sélectionner un genre." }),
+        gender: z.enum(['Homme', 'Femme', 'Autre'], { required_error: "Veuillez sélectionner un genre." }),
         nom: z.string().min(2, { message: "Le nom doit contenir au moins 2 caractères." }),
         prenom: z.string().min(2, { message: "Le prénom doit contenir au moins 2 caractères." }),
         phone: z.string()
@@ -37,21 +37,21 @@ export const QuestionInformationPersonnelles: React.FC<InformationPersonnellesPr
         birthdate: z.string()
             .regex(/^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d{2}$/, { message: "La date de naissance doit être au format JJ/MM/AAAA." }),
         job: z.string().min(2, { message: "La profession doit contenir au moins 2 caractères." }),
-        hasDisabilityOrIllness: z.enum(['true', 'false', ''], { required_error: "Ce champ est requis." }),
+        hasDisabilityOrIllness: z.enum(['true', 'false'], { required_error: "Ce champ est requis." }),
         disabilityOrIllnessDetails: z.string().optional(),
     });
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            gender: "",
+            gender: undefined,
             nom: "",
             prenom: "",
             phone: "",
             email: "",
             birthdate: "",
             job: "",
-            hasDisabilityOrIllness: "",
+            hasDisabilityOrIllness: undefined,
             disabilityOrIllnessDetails: "",
         },
     })
