@@ -26,15 +26,19 @@ type InformationPersonnellesProps = {
 
 export const QuestionInformationPersonnelles: React.FC<InformationPersonnellesProps> = ({ onNextStep, onPreviousStep }) => {
     const formSchema = z.object({
-        gender: z.string(),
+        gender: z.enum(['Homme', 'Femme', 'Autre', ''], { required_error: "Veuillez sélectionner un genre." }),
         nom: z.string().min(2, { message: "Le nom doit contenir au moins 2 caractères." }),
         prenom: z.string().min(2, { message: "Le prénom doit contenir au moins 2 caractères." }),
-        phone: z.string().min(10, { message: "Le numéro de téléphone doit contenir au moins 10 chiffres." })
-            .regex(/^\+?[0-9]+$/, { message: "Le format du numéro de téléphone est invalide." }),
-        email: z.string().email({ message: "L'email n'est pas valide." }),
-        birthdate: z.string().min(10, { message: "La date de naissance doit être au format jj/mm/aaaa." })
-            .regex(/^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/\d{4}$/, { message: "La date de naissance doit être au format jj/mm/aaaa." }),
+        phone: z.string()
+            .min(10, { message: "Le numéro de téléphone doit contenir au moins 10 chiffres." })
+            .regex(/^(?:\+33|0)[1-9](\d{2}){4}$/, { message: "Le format du numéro de téléphone est invalide. Un format français est attendu." }),
+        email: z.string()
+            .email({ message: "L'adresse e-mail n'est pas valide." }),
+        birthdate: z.string()
+            .regex(/^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d{2}$/, { message: "La date de naissance doit être au format JJ/MM/AAAA." }),
         job: z.string().min(2, { message: "La profession doit contenir au moins 2 caractères." }),
+        hasDisabilityOrIllness: z.enum(['true', 'false', ''], { required_error: "Ce champ est requis." }),
+        disabilityOrIllnessDetails: z.string().optional(),
     });
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -47,8 +51,12 @@ export const QuestionInformationPersonnelles: React.FC<InformationPersonnellesPr
             email: "",
             birthdate: "",
             job: "",
+            hasDisabilityOrIllness: "",
+            disabilityOrIllnessDetails: "",
         },
     })
+
+    const hasDisabilityOrIllness = form.watch('hasDisabilityOrIllness');
 
     // 2. Define a submit handler.
     const onSubmit = (values: z.infer<typeof formSchema>) => {
@@ -189,6 +197,46 @@ export const QuestionInformationPersonnelles: React.FC<InformationPersonnellesPr
                                         )}
                                     />
                                 </div>
+                            </div>
+
+                            <div className="from-wrapper flex gap-11 w-full">
+                                <div className="form-item w-1/2">
+                                    <FormField
+                                        control={form.control}
+                                        name="hasDisabilityOrIllness"
+                                        render={({ field }) => (
+                                            <FormItem className="flex flex-col gap-4">
+                                                <FormLabel>Avez-vous une maladie ou un handicap qu’il soit physique ou mental ?</FormLabel>
+                                                <FormControl>
+                                                    <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} className="flex gap-8" variant={"outline"}>
+                                                        <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>
+                                                        <ToggleGroupItem value="false" className="hover:bg-primary hover:text-white">Non</ToggleGroupItem>
+                                                    </ToggleGroup>
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+
+                                {hasDisabilityOrIllness === 'true' && (
+                                    <div className="form-item w-1/2">
+                                        <FormField
+                                            control={form.control}
+                                            name="disabilityOrIllnessDetails"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel>Si oui, lequel</FormLabel>
+                                                    <FormControl>
+                                                        <Input placeholder="Indiquer votre handicap" {...field} />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+                                    </div>
+                                )}
+
                             </div>
                         </div>
 

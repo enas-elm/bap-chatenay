@@ -1,11 +1,13 @@
 export type InformationPersonnelles = {
-    gender: string;
+    gender: "" | "Homme" | "Femme" | "Autre";
     nom: string;
     prenom: string;
     phone: string;
     email: string;
     birthdate: string;
     job: string;
+    hasDisabilityOrIllness?: "" | "true" | "false";
+    disabilityOrIllnessDetails?: string;
 };
 
 export type HorairesDeTravail = {
