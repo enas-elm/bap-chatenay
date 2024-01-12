@@ -25,8 +25,6 @@ const UserAccountNav = async ({
   imageUrl,
   name,
 }: UserAccountNavProps) => {
-  // const subscriptionPlan = await getUserSubscriptionPlan()
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
