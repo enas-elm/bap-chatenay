@@ -59,7 +59,6 @@ export const QuestionHorairesDeTravail: React.FC<HorairesDeTravailProps> = ({ on
 
     // 2. Define a submit handler.
     const onSubmit = (values: z.infer<typeof formSchema>) => {
-        console.log(values);
         onNextStep(values);
     };
 

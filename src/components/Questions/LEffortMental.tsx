@@ -42,7 +42,6 @@ export const QuestionLEffortMental: React.FC<LEffortMentalProps> = ({ onNextStep
 
     // 2. Define a submit handler.
     const onSubmit = (values: z.infer<typeof formSchema>) => {
-        console.log(values);
         onNextStep(values);
     };
 

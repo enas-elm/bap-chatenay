@@ -45,9 +45,6 @@ const FormPage = () => {
         }
     };
 
-    console.log(responses);
-
-
     return (
         <div className='form flex h-screen relative'>
             <div className='form-image absolute z-0'>
@@ -63,7 +60,7 @@ const FormPage = () => {
                 <ProgressBar currentStep={currentStep} steps={['Introductions', 'Information personnelles', 'Horaires de travail', 'L’environnement', 'L’effort mental', 'Satisfaction et évolution de carrière', 'Résultat']} />
             </div>
             <div className='w-3/4 flex flex-col h-full bg-white z-10'>
-                <QuestionForm step={currentStep} onNextStep={onNextStep} onPreviousStep={onPreviousStep} />
+                <QuestionForm step={currentStep} onNextStep={onNextStep} onPreviousStep={onPreviousStep} getResponse={responses} />
             </div>
         </div>
     );

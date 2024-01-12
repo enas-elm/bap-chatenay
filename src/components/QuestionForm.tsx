@@ -11,9 +11,10 @@ type QuestionFormProps = {
     step: number;
     onNextStep: () => void;
     onPreviousStep: () => void;
+    getResponse: object;
 };
 
-export const QuestionForm = ({ step, onNextStep, onPreviousStep }: QuestionFormProps) => {
+export const QuestionForm = ({ step, onNextStep, onPreviousStep, getResponse }: QuestionFormProps) => {
     const renderQuestionComponent = () => {
         switch (step) {
             case 0:
@@ -29,7 +30,7 @@ export const QuestionForm = ({ step, onNextStep, onPreviousStep }: QuestionFormP
             case 5:
                 return <QuestionSatisfactionEtEvolutionDeCarriere onNextStep={onNextStep} onPreviousStep={onPreviousStep} />;
             default:
-                return <Resultat />
+                return <Resultat getResponse={getResponse} />
         }
     };
 

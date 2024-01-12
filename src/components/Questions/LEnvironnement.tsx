@@ -40,7 +40,6 @@ export const QuestionLEnvironnement: React.FC<LEnvironnementProps> = ({ onNextSt
 
     // 2. Define a submit handler.
     const onSubmit = (values: z.infer<typeof formSchema>) => {
-        console.log(values);
         onNextStep(values);
     };
 

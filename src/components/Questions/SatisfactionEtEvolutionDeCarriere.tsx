@@ -40,7 +40,6 @@ export const QuestionSatisfactionEtEvolutionDeCarriere: React.FC<SatisfactionEtE
 
     // 2. Define a submit handler.
     const onSubmit = (values: z.infer<typeof formSchema>) => {
-        console.log(values);
         onNextStep(values);
     };
 
