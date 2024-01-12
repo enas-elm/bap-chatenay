@@ -15,7 +15,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({ currentStep, steps }) 
                     const isActive = index === currentStep;
                     return (
                         <div key={step} className={`flex items-center ${isActive ? 'text-white' : ' text-gray-400'}`}>
-                            <div className={`rounded-full h-8 w-8 flex items-center justify-center ${isActive ? 'bg-green-600' : 'bg-gray-400'}`}>
+                            <div className={`rounded-full h-8 w-8 flex items-center justify-center ${isActive ? 'bg-primary' : 'bg-gray-400'}`}>
                                 {isActive && <span className="text-white font-bold">{index + 1}</span>}
                             </div>
                             <div className="ml-4">
