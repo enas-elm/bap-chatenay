@@ -4,7 +4,7 @@ import { QuestionInformationPersonnelles } from "./Questions/InformationPersonne
 import { QuestionIntro } from "./Questions/Introductions";
 import { QuestionLEffortMental } from "./Questions/LEffortMental";
 import { QuestionLEnvironnement } from "./Questions/LEnvironnement";
-import { Resultat } from "./Questions/Resultat";
+import { Resultat } from "./Resultat";
 import { QuestionSatisfactionEtEvolutionDeCarriere } from "./Questions/SatisfactionEtEvolutionDeCarriere";
 
 type QuestionFormProps = {
