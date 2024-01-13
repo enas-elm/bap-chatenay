@@ -7,9 +7,7 @@ import { useEffect, useState } from 'react'
 
 const MobileNav = ({ isAuth }: { isAuth: boolean }) => {
   const [isOpen, setOpen] = useState<boolean>(false)
-
   const toggleOpen = () => setOpen((prev) => !prev)
-
   const pathname = usePathname()
 
   useEffect(() => {

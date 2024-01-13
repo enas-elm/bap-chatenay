@@ -7,7 +7,6 @@ import {
     getKindeServerSession,
 } from '@kinde-oss/kinde-auth-nextjs/server'
 import MobileNav from './MobileNav'
-import { ArrowRight } from 'lucide-react'
 import UserAccountNav from './UserAccountNav'
 
 

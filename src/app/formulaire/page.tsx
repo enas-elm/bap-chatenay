@@ -42,6 +42,8 @@ const FormPage = () => {
                 return 'LEffortMental';
             case 6:
                 return 'SatisfactionEtEvolutionDeCarriere';
+            case 7:
+                return 'Resultat';
             default:
                 return 'Resultat';
         }
