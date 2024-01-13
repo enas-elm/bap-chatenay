@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import MaxWidthWrapper from '@/components/MaxWidthWrapper'
+import MaxWidthWrapper from '@/components/layouts/MaxWidthWrapper'
 import Link from 'next/link.js'
 import { buttonVariants } from '@/components/ui/button'
 import { ArrowRight } from 'lucide-react'
@@ -40,143 +40,80 @@ export default function Home() {
 
             <div className='px-20 bg-gray-100 py-8'>
                 <div className='text-center'>
-                    <h2 className='text-3xl font-bold'>Les Avantages Clés</h2>
-                    <p className='mt-2 text-zinc-700'>Découvrez comment notre approche peut bénéficier à votre entreprise</p>
+                    <h2 className='text-3xl font-bold'>Découvrez les Bénéfices de Notre Service</h2>
+                    <p className='mt-2 text-zinc-700'>Profitez d'une approche personnalisée et complète pour évaluer et gérer l'usure professionnelle</p>
                 </div>
                 <div className='flex w-full items-center justify-center mt-9 gap-10'>
                     {/* Carte 1 */}
                     <Card>
                         <CardHeader>
-                            <CardTitle>Réduction de l'Usure</CardTitle>
-                            <CardDescription>80% de réduction en moyenne</CardDescription>
+                            <CardTitle>Évaluation Précise</CardTitle>
+                            <CardDescription>Détection fiable de l'usure</CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <p>Amélioration significative de la gestion des ressources humaines.</p>
+                            <p>Utilisation d'un formulaire détaillé pour une évaluation précise de votre situation professionnelle.</p>
                         </CardContent>
                         <CardFooter>
-                            <p>Impact direct sur le bien-être des employés.</p>
+                            <p>Identification rapide des risques d'usure professionnelle.</p>
                         </CardFooter>
                     </Card>
 
                     {/* Carte 2 */}
                     <Card>
                         <CardHeader>
-                            <CardTitle>Productivité Accrue</CardTitle>
-                            <CardDescription>Augmentation de 50%</CardDescription>
+                            <CardTitle>Tableau de Bord Intuitif</CardTitle>
+                            <CardDescription>Suivi et gestion facilités</CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <p>Optimisation des performances et de l'efficacité.</p>
+                            <p>Accès à un tableau de bord pour suivre vos évaluations et consulter vos progrès.</p>
                         </CardContent>
                         <CardFooter>
-                            <p>Meilleure allocation des ressources.</p>
+                            <p>Gestion efficace de votre parcours vers le bien-être professionnel.</p>
                         </CardFooter>
                     </Card>
 
                     {/* Carte 3 */}
                     <Card>
                         <CardHeader>
-                            <CardTitle>Coûts Réduits</CardTitle>
-                            <CardDescription>Diminution de 30%</CardDescription>
+                            <CardTitle>Ressources Utiles</CardTitle>
+                            <CardDescription>Accès à des informations clés</CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <p>Réduction des coûts liés au turnover et à l'absentéisme.</p>
+                            <p>Obtenez des ressources approfondies pour comprendre et combattre l'usure professionnelle.</p>
                         </CardContent>
                         <CardFooter>
-                            <p>Économies substantielles pour l'entreprise.</p>
+                            <p>Guides, articles, et conseils pratiques à votre disposition.</p>
                         </CardFooter>
                     </Card>
-
                     {/* Carte 4 */}
                     <Card>
                         <CardHeader>
-                            <CardTitle>Satisfaction Client</CardTitle>
-                            <CardDescription>95% de clients satisfaits</CardDescription>
+                            <CardTitle>Support Spécialisé</CardTitle>
+                            <CardDescription>Accompagnement personnalisé</CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <p>Amélioration notable de l'environnement de travail.</p>
+                            <p>Accès direct à des experts pour obtenir des conseils et un soutien personnalisés.</p>
                         </CardContent>
                         <CardFooter>
-                            <p>Résultats positifs et concrets.</p>
+                            <p>Solutions adaptées à votre situation spécifique.</p>
                         </CardFooter>
                     </Card>
 
                     {/* Carte 5 */}
                     <Card>
                         <CardHeader>
-                            <CardTitle>Intégration Rapide</CardTitle>
-                            <CardDescription>2 fois plus rapide</CardDescription>
+                            <CardTitle>Prévention et Sensibilisation</CardTitle>
+                            <CardDescription>Agir avant l'apparition du problème</CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <p>Accélération du processus d'accueil des nouveaux employés.</p>
+                            <p>Apprenez à reconnaître et à prévenir l'usure professionnelle avant qu'elle ne s'aggrave.</p>
                         </CardContent>
                         <CardFooter>
-                            <p>Facilitation de l'adaptation et de la montée en compétence.</p>
+                            <p>Des stratégies proactives pour maintenir une santé professionnelle durable.</p>
                         </CardFooter>
                     </Card>
-
                 </div>
             </div>
-
-            <section className='my-12 px-20'>
-                <div className='text-center'>
-                    <h2 className='text-3xl font-bold'>Ce Que Disent Nos Clients</h2>
-                    <p className='mt-2 text-zinc-700'>Témoignages de satisfaction...</p>
-                </div>
-                <div className='flex justify-center mt-5 gap-4'>
-
-                    {/* Témoignage 1 */}
-                    <div className='testimonial-card'>
-                        <p className='testimonial-text'>
-                            "Depuis que j'utilise ce service, la productivité de mon équipe a nettement augmenté. Nous sommes mieux équipés pour gérer l'usure professionnelle."
-                        </p>
-                        <div className='testimonial-author'>
-                            <p>Jean Dupont, Directeur RH, Entreprise XYZ</p>
-                        </div>
-                    </div>
-
-                    {/* Témoignage 2 */}
-                    <div className='testimonial-card'>
-                        <p className='testimonial-text'>
-                            "Un outil incroyablement utile pour mesurer et améliorer le bien-être au travail. Hautement recommandé !"
-                        </p>
-                        <div className='testimonial-author'>
-                            <p>Marie Lefebvre, Responsable du bien-être, ABC Corp</p>
-                        </div>
-                    </div>
-
-                    {/* Témoignage 3 */}
-                    <div className='testimonial-card'>
-                        <p className='testimonial-text'>
-                            "J'ai été impressionné par la précision de l'analyse et les conseils personnalisés qui ont suivi. Un excellent service client !"
-                        </p>
-                        <div className='testimonial-author'>
-                            <p>Marc Bernard, CEO, Tech Solutions</p>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-            <section className='my-12 bg-gray-100 py-8'>
-                <div className='text-center'>
-                    <h2 className='text-3xl font-bold'>Questions Fréquentes</h2>
-                </div>
-                <div className='mt-5'>
-                </div>
-            </section>
-
-            <section className='my-12 text-center'>
-                <h2 className='text-3xl font-bold'>Prêt à Évaluer Votre Usure Professionnelle ?</h2>
-                <Link
-                    className={buttonVariants({
-                        size: 'lg',
-                        className: 'mt-5',
-                    })}
-                    href='/formulaire'
-                >
-                    Commencez Maintenant <ArrowRight className='ml-2 h-5 w-5' />
-                </Link>
-            </section>
         </>
     )
 }
