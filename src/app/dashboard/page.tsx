@@ -1,16 +1,4 @@
-import MaxWidthWrapper from "@/components/MaxWidthWrapper"
 import Navbar from "@/components/Navbar"
-import Image from "next/image"
-
-import { Button } from "@ui/button"
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-} from "@ui/card"
-
 import { CalendarDateRangePicker } from "./components/date-range-picker"
 
 const Dashboard = () => {
