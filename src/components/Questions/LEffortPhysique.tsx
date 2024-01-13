@@ -1,6 +1,3 @@
-// components/QuestionForm.tsx
-'use client'
-// components/QuestionForm.tsx
 'use client'
 
 import * as z from "zod"
