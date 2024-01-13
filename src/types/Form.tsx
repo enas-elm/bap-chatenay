@@ -28,6 +28,7 @@ export type LEffortPhysique = {
     positionStatique: string | undefined
     expositionRisquesPhysiques: string | undefined
     deplacementsFrequents: string | undefined
+    travailRepetitif: string | undefined
     problemesPhysiquesLiesAuTravail: string | undefined
 };
 
@@ -86,10 +87,10 @@ export type ResponseType = {
 //  Etes - vous toujours dans la même position lors de votre travail ? (assis, debout... )
 //  Êtes - vous régulièrement exposé(e) à des risques physiques dans votre travail(charges lourdes, posture contraignante, utilisation d'équipements lourds, etc.) ?
 //  Faites - vous de nombreux déplacements et / ou longs ?
-//  Faites - vous de nombreux déplacements et / ou longs ?
+//  Le travail est-il répétitif ?
 //  Avez - vous eu des problèmes physiques récurrents ou des douleurs liées à votre travail ?
 
-// Mental :
+// Mental : fait
 //  Votre travail demande-t-il beaucoup de concentration ?
 //  Ressentez-vous du de la fatigue mentale ou du stress lié à votre travail ?
 //  Votre travail impacte négativement votre vie personnelle ou votre santé en dehors du travail ?
