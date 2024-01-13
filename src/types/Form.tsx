@@ -17,24 +17,42 @@ export type HorairesDeTravail = {
     heuresSupplementaires?: string | undefined
     heuresTravailSemaine?: string | undefined
 };
+
 export type LEnvironnement = {
-    // ... structure de vos champs pour HorairesDeTravail
+    espaceDeTravailInadapte: string | undefined
+    expositionProduitsToxiques: string | undefined
+    expositionVibrations: string | undefined
 };
+
+export type LEffortPhysique = {
+    positionStatique: string | undefined
+    expositionRisquesPhysiques: string | undefined
+    deplacementsFrequents: string | undefined
+    problemesPhysiquesLiesAuTravail: string | undefined
+};
+
 export type LEffortMental = {
-    espaceDeTravail: string;
-    expositionADesRisques: string;
-    expositionADesVibrations: string;
+    forteConcentrationRequise: string | undefined
+    fatigueMentaleOuStress: string | undefined
+    impactNegatifSurViePersonnelle: string | undefined
 };
+
 export type SatisfactionEtEvolutionDeCarriere = {
-    // ... structure de vos champs pour HorairesDeTravail
+    satisfactionTravail: string | undefined
+    motivationPourTachesQuotidiennes: string | undefined
+    possibiliteEvolutionCarriere: string | undefined
+    optionsReconversion: string | undefined
 };
+
 export type Resultat = {
     // ... structure de vos champs pour HorairesDeTravail
 };
+
 export type ResponseType = {
     InformationPersonnelles?: InformationPersonnelles;
     HorairesDeTravail?: HorairesDeTravail;
     LEnvironnement?: LEnvironnement;
+    LEffortPhysique?: LEffortPhysique;
     LEffortMental?: LEffortMental;
     SatisfactionEtEvolutionDeCarriere?: SatisfactionEtEvolutionDeCarriere;
     Resultat?: Resultat;

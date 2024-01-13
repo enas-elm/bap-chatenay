@@ -24,17 +24,17 @@ type LEnvironnementProps = {
 
 export const QuestionLEnvironnement: React.FC<LEnvironnementProps> = ({ onNextStep, onPreviousStep }) => {
     const formSchema = z.object({
-        espaceDeTravail: z.string(),
-        expositionADesRisques: z.string(),
-        expositionADesVibrations: z.string(),
+        espaceDeTravailInadapte: z.string(),
+        expositionProduitsToxiques: z.string(),
+        expositionVibrations: z.string(),
     });
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            espaceDeTravail: "",
-            expositionADesRisques: "",
-            expositionADesVibrations: "",
+            espaceDeTravailInadapte: "",
+            expositionProduitsToxiques: "",
+            expositionVibrations: "",
         },
     })
 
@@ -62,7 +62,7 @@ export const QuestionLEnvironnement: React.FC<LEnvironnementProps> = ({ onNextSt
                             <div className="form-item w-1/2">
                                 <FormField
                                     control={form.control}
-                                    name="espaceDeTravail"
+                                    name="espaceDeTravailInadapte"
                                     render={({ field }) => (
                                         <FormItem className="flex flex-col gap-4">
                                             <FormLabel>Votre espace de travail est-il inadapté ? (restreint, encombré... )</FormLabel>
@@ -81,7 +81,7 @@ export const QuestionLEnvironnement: React.FC<LEnvironnementProps> = ({ onNextSt
                             <div className="form-item w-1/2">
                                 <FormField
                                     control={form.control}
-                                    name="expositionADesRisques"
+                                    name="expositionProduitsToxiques"
                                     render={({ field }) => (
                                         <FormItem className="flex flex-col gap-4">
                                             <FormLabel>Etes-vous exposer à des produits (toxiques, poussières) ?</FormLabel>
@@ -102,7 +102,7 @@ export const QuestionLEnvironnement: React.FC<LEnvironnementProps> = ({ onNextSt
                             <div className="form-item w-1/2">
                                 <FormField
                                     control={form.control}
-                                    name="expositionADesVibrations"
+                                    name="expositionVibrations"
                                     render={({ field }) => (
                                         <FormItem className="flex flex-col gap-4">
                                             <FormLabel>Etes-vous exposer à des vibrations du corps entier (conduite) ou membres supérieurs (outils vibrants) ?</FormLabel>

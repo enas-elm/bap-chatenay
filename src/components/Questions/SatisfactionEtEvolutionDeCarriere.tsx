@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/form"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 
-import { SatisfactionEtEvolutionDeCarriere } from "@/types/Form.jsx"
+import { SatisfactionEtEvolutionDeCarriere } from "@/types/Form"
 
 type SatisfactionEtEvolutionDeCarriereProps = {
     onNextStep: (response?: SatisfactionEtEvolutionDeCarriere) => void;
@@ -24,17 +24,19 @@ type SatisfactionEtEvolutionDeCarriereProps = {
 
 export const QuestionSatisfactionEtEvolutionDeCarriere: React.FC<SatisfactionEtEvolutionDeCarriereProps> = ({ onNextStep, onPreviousStep }) => {
     const formSchema = z.object({
-        espaceDeTravail: z.string(),
-        expositionADesRisques: z.string(),
-        expositionADesVibrations: z.string(),
+        satisfactionTravail: z.string(),
+        motivationPourTachesQuotidiennes: z.string(),
+        possibiliteEvolutionCarriere: z.string(),
+        optionsReconversion: z.string(),
     });
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            espaceDeTravail: "",
-            expositionADesRisques: "",
-            expositionADesVibrations: "",
+            satisfactionTravail: "",
+            motivationPourTachesQuotidiennes: "",
+            possibiliteEvolutionCarriere: "",
+            optionsReconversion: "",
         },
     })
 
@@ -61,10 +63,10 @@ export const QuestionSatisfactionEtEvolutionDeCarriere: React.FC<SatisfactionEtE
                             <div className="form-item w-1/2">
                                 <FormField
                                     control={form.control}
-                                    name="espaceDeTravail"
+                                    name="satisfactionTravail"
                                     render={({ field }) => (
                                         <FormItem className="flex flex-col gap-4">
-                                            <FormLabel>Votre espace de travail est-il inadapté ? (restreint, encombré... )</FormLabel>
+                                            <FormLabel>VÊtes-vous satisfait(e) de votre travail actuel ?</FormLabel>
                                             <FormControl>
                                                 <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} variant={"outline"}>
                                                     <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>
@@ -80,10 +82,10 @@ export const QuestionSatisfactionEtEvolutionDeCarriere: React.FC<SatisfactionEtE
                             <div className="form-item w-1/2">
                                 <FormField
                                     control={form.control}
-                                    name="expositionADesRisques"
+                                    name="motivationPourTachesQuotidiennes"
                                     render={({ field }) => (
                                         <FormItem className="flex flex-col gap-4">
-                                            <FormLabel>Etes-vous exposer à des produits (toxiques, poussières) ?</FormLabel>
+                                            <FormLabel>Ressentez-vous de la motivation pour accomplir vos tâches quotidiennes ?</FormLabel>
                                             <FormControl>
                                                 <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} variant={"outline"}>
                                                     <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>
@@ -101,10 +103,29 @@ export const QuestionSatisfactionEtEvolutionDeCarriere: React.FC<SatisfactionEtE
                             <div className="form-item w-1/2">
                                 <FormField
                                     control={form.control}
-                                    name="expositionADesVibrations"
+                                    name="possibiliteEvolutionCarriere"
                                     render={({ field }) => (
                                         <FormItem className="flex flex-col gap-4">
-                                            <FormLabel>Etes-vous exposer à des vibrations du corps entier (conduite) ou membres supérieurs (outils vibrants) ?</FormLabel>
+                                            <FormLabel>Envisagez-vous la possibilité de faire évoluer votre carrière ?</FormLabel>
+                                            <FormControl>
+                                                <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} variant={"outline"}>
+                                                    <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>
+                                                    <ToggleGroupItem value="false" className="hover:bg-primary hover:text-white">Non</ToggleGroupItem>
+                                                </ToggleGroup>
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+
+                            <div className="form-item w-1/2">
+                                <FormField
+                                    control={form.control}
+                                    name="optionsReconversion"
+                                    render={({ field }) => (
+                                        <FormItem className="flex flex-col gap-4">
+                                            <FormLabel>Dans quel(s) métier(s) pouvez-vous envisagez une reconversion ?</FormLabel>
                                             <FormControl>
                                                 <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} variant={"outline"}>
                                                     <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>

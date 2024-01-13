@@ -1,5 +1,7 @@
 // components/QuestionForm.tsx
 'use client'
+// components/QuestionForm.tsx
+'use client'
 
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -15,26 +17,28 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
-import { LEffortMental } from "@/types/Form"
+import { LEffortPhysique } from "@/types/Form"
 
-type LEffortMentalProps = {
-    onNextStep: (response?: LEffortMental) => void;
+type LEffortPhysiqueProps = {
+    onNextStep: (response?: LEffortPhysique) => void;
     onPreviousStep: () => void;
 };
 
-export const QuestionLEffortMental: React.FC<LEffortMentalProps> = ({ onNextStep, onPreviousStep }) => {
+export const QuestionLEffortPhysique: React.FC<LEffortPhysiqueProps> = ({ onNextStep, onPreviousStep }) => {
     const formSchema = z.object({
-        forteConcentrationRequise: z.string(),
-        fatigueMentaleOuStress: z.string(),
-        impactNegatifSurViePersonnelle: z.string(),
+        positionStatique: z.string(),
+        expositionRisquesPhysiques: z.string(),
+        deplacementsFrequents: z.string(),
+        problemesPhysiquesLiesAuTravail: z.string(),
     });
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            forteConcentrationRequise: "",
-            fatigueMentaleOuStress: "",
-            impactNegatifSurViePersonnelle: "",
+            positionStatique: "",
+            expositionRisquesPhysiques: "",
+            deplacementsFrequents: "",
+            problemesPhysiquesLiesAuTravail: "",
         },
     })
 
@@ -62,7 +66,7 @@ export const QuestionLEffortMental: React.FC<LEffortMentalProps> = ({ onNextStep
                             <div className="form-item w-1/2">
                                 <FormField
                                     control={form.control}
-                                    name="forteConcentrationRequise"
+                                    name="positionStatique"
                                     render={({ field }) => (
                                         <FormItem className="flex flex-col gap-4">
                                             <FormLabel>Votre espace de travail est-il inadapté ? (restreint, encombré... )</FormLabel>
@@ -81,7 +85,7 @@ export const QuestionLEffortMental: React.FC<LEffortMentalProps> = ({ onNextStep
                             <div className="form-item w-1/2">
                                 <FormField
                                     control={form.control}
-                                    name="fatigueMentaleOuStress"
+                                    name="problemesPhysiquesLiesAuTravail"
                                     render={({ field }) => (
                                         <FormItem className="flex flex-col gap-4">
                                             <FormLabel>Etes-vous exposer à des produits (toxiques, poussières) ?</FormLabel>
@@ -102,7 +106,26 @@ export const QuestionLEffortMental: React.FC<LEffortMentalProps> = ({ onNextStep
                             <div className="form-item w-1/2">
                                 <FormField
                                     control={form.control}
-                                    name="impactNegatifSurViePersonnelle"
+                                    name="deplacementsFrequents"
+                                    render={({ field }) => (
+                                        <FormItem className="flex flex-col gap-4">
+                                            <FormLabel>Etes-vous exposer à des vibrations du corps entier (conduite) ou membres supérieurs (outils vibrants) ?</FormLabel>
+                                            <FormControl>
+                                                <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} variant={"outline"}>
+                                                    <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>
+                                                    <ToggleGroupItem value="false" className="hover:bg-primary hover:text-white">Non</ToggleGroupItem>
+                                                </ToggleGroup>
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+
+                            <div className="form-item w-1/2">
+                                <FormField
+                                    control={form.control}
+                                    name="deplacementsFrequents"
                                     render={({ field }) => (
                                         <FormItem className="flex flex-col gap-4">
                                             <FormLabel>Etes-vous exposer à des vibrations du corps entier (conduite) ou membres supérieurs (outils vibrants) ?</FormLabel>
