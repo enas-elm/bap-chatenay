@@ -2,10 +2,9 @@
 import { useState, useEffect } from "react";
 import { Result1 } from "./Questions/Result1";
 import { Result2 } from "./Questions/Result2";
-import { saveUserResponse } from "@api/prisma/saveUserResponse";
 
 type ResultProps = {
-    getResponse: object;
+    getResponse: any; // Remplacez 'any' par le type de données approprié
 };
 
 export const Resultat = ({ getResponse }: ResultProps) => {
@@ -26,92 +25,104 @@ export const Resultat = ({ getResponse }: ResultProps) => {
 
 function calculerScoreUsure(reponses: any) {
     let score = 0;
+    score += calculerScoreInfoPersonnelles(reponses.InformationPersonnelles);
+    score += calculerScoreHorairesTravail(reponses.HorairesDeTravail);
+    score += calculerScoreEnvironnement(reponses.LEnvironnement);
+    score += calculerScoreEffortPhysique(reponses.LEffortPhysique);
+    score += calculerScoreEffortMental(reponses.LEffortMental);
+    score += calculerScoreSatisfactionEvolution(reponses.SatisfactionEtEvolutionDeCarriere);
+    return score;
+}
 
-    /* -------------------------------------------------------------------------- */
-    /*                          Information Personnelles                          */
-    /* -------------------------------------------------------------------------- */
-    if (reponses.InformationPersonnelles.hasDisabilityOrIllness === 'true') {
-        score += 2;
-        const maladie = reponses.InformationPersonnelles.disabilityOrIllnessDetails;
+function calculerScoreInfoPersonnelles(info: { hasDisabilityOrIllness: string; disabilityOrIllnessDetails: any; }) {
+    let score = 0;
+    if (info.hasDisabilityOrIllness === 'true') {
+        score += 2
+            ;
+        const maladie = info.disabilityOrIllnessDetails;
         score += calculerScoreMaladie(maladie);
     }
+    return score;
+}
 
-    /* -------------------------------------------------------------------------- */
-    /*                             Horaires de Travail                            */
-    /* -------------------------------------------------------------------------- */
-    if (estSuperieurAUnHeure(reponses.HorairesDeTravail.tempsTrajet)) {
+function calculerScoreHorairesTravail(horaires: { tempsTrajet: String; horairesIrreguliers: string; heuresSupplementaires: string; heuresTravailSemaine: String; }) {
+    let score = 0;
+    if (estSuperieurAUnHeure(horaires.tempsTrajet)) {
         score += 1;
     }
-    if (reponses.HorairesDeTravail.horairesIrreguliers === 'true') {
+    if (horaires.horairesIrreguliers === 'true') {
         score += 2;
     }
-    if (reponses.HorairesDeTravail.heuresSupplementaires === 'true') {
+    if (horaires.heuresSupplementaires === 'true') {
         score += 2;
     }
-    const minutesTotales = convertirEnMinutes(reponses.HorairesDeTravail.heuresTravailSemaine);
+    const minutesTotales = convertirEnMinutes(horaires.heuresTravailSemaine);
     if (minutesTotales > 2400) { // 40 heures * 60 minutes
         score += 2;
     }
+    return score;
+}
 
-    /* -------------------------------------------------------------------------- */
-    /*                                Environnement                               */
-    /* -------------------------------------------------------------------------- */
-    if (reponses.LEnvironnement.espaceDeTravailInadapte === 'true') {
+function calculerScoreEnvironnement(env: { espaceDeTravailInadapte: string; expositionProduitsToxiques: string; expositionVibrations: string; }) {
+    let score = 0;
+    if (env.espaceDeTravailInadapte === 'true') {
         score += 2;
     }
-    if (reponses.LEnvironnement.expositionProduitsToxiques === 'true') {
+    if (env.expositionProduitsToxiques === 'true') {
         score += 3;
     }
-    if (reponses.LEnvironnement.expositionVibrations === 'true') {
+    if (env.expositionVibrations === 'true') {
         score += 2;
     }
+    return score;
+}
 
-    /* -------------------------------------------------------------------------- */
-    /*                               Effort Physique                              */
-    /* -------------------------------------------------------------------------- */
-    if (reponses.LEffortPhysique.positionStatique === 'true') {
+function calculerScoreEffortPhysique(effort: { positionStatique: string; expositionRisquesPhysiques: string; travailRepetitif: string; deplacementsFrequents: string; problemesPhysiquesLiesAuTravail: string; }) {
+    let score = 0;
+    if (effort.positionStatique === 'true') {
         score += 1; // Position statique prolongée
     }
-    if (reponses.LEffortPhysique.expositionRisquesPhysiques === 'true') {
+    if (effort.expositionRisquesPhysiques === 'true') {
         score += 2; // Exposition à des risques physiques
     }
-    if (reponses.LEffortPhysique.travailRepetitif === 'true') {
+    if (effort.travailRepetitif === 'true') {
         score += 2; // Travail répétitif
     }
-    if (reponses.LEffortPhysique.deplacementsFrequents === 'true') {
+    if (effort.deplacementsFrequents === 'true') {
         score += 1; // Déplacements fréquents ou prolongés
     }
-    if (reponses.LEffortPhysique.problemesPhysiquesLiesAuTravail === 'true') {
+    if (effort.problemesPhysiquesLiesAuTravail === 'true') {
         score += 2; // Problèmes physiques liés au travail
     }
+    return score;
+}
 
-    /* -------------------------------------------------------------------------- */
-    /*                                Effort Mental                               */
-    /* -------------------------------------------------------------------------- */
-
-    if (reponses.LEffortMental.forteConcentrationRequise === 'true') {
+function calculerScoreEffortMental(effort: { forteConcentrationRequise: string; fatigueMentaleOuStress: string; impactNegatifSurViePersonnelle: string; }) {
+    let score = 0;
+    if (effort.forteConcentrationRequise === 'true') {
         score += 2; // Exigence de forte concentration
     }
-    if (reponses.LEffortMental.fatigueMentaleOuStress === 'true') {
+    if (effort.fatigueMentaleOuStress === 'true') {
         score += 2; // Fatigue mentale ou stress
     }
-    if (reponses.LEffortMental.impactNegatifSurViePersonnelle === 'true') {
+    if (effort.impactNegatifSurViePersonnelle === 'true') {
         score += 3; // Impact négatif sur la vie personnelle ou la santé
     }
+    return score;
+}
 
-    /* -------------------------------------------------------------------------- */
-    /*                  Satisfaction et Évolution Professionnelle                 */
-    /* -------------------------------------------------------------------------- */
-    if (reponses.SatisfactionEtEvolutionDeCarriere.satisfactionTravail === 'false') {
+function calculerScoreSatisfactionEvolution(satisfaction: { satisfactionTravail: string; motivationPourTachesQuotidiennes: string; possibiliteEvolutionCarriere: string; optionsReconversion: any; }) {
+    let score = 0;
+    if (satisfaction.satisfactionTravail === 'false') {
         score += 2;
     }
-    if (reponses.SatisfactionEtEvolutionDeCarriere.motivationPourTachesQuotidiennes === 'false') {
+    if (satisfaction.motivationPourTachesQuotidiennes === 'false') {
         score += 2;
     }
-    if (reponses.SatisfactionEtEvolutionDeCarriere.possibiliteEvolutionCarriere === 'false') {
+    if (satisfaction.possibiliteEvolutionCarriere === 'false') {
         score += 1;
     }
-    if (reponses.SatisfactionEtEvolutionDeCarriere.optionsReconversion) {
+    if (satisfaction.optionsReconversion) {
         score += 1;
     }
     return score;

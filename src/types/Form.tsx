@@ -46,7 +46,6 @@ export type SatisfactionEtEvolutionDeCarriere = {
 };
 
 export type Resultat = {
-    // ... structure de vos champs pour HorairesDeTravail
 };
 
 export type ResponseType = {
