@@ -14,6 +14,7 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
+import { Input } from "../ui/input"
 
 import { SatisfactionEtEvolutionDeCarriere } from "@/types/Form"
 
@@ -127,10 +128,7 @@ export const QuestionSatisfactionEtEvolutionDeCarriere: React.FC<SatisfactionEtE
                                         <FormItem className="flex flex-col gap-4">
                                             <FormLabel>Dans quel(s) métier(s) pouvez-vous envisagez une reconversion ?</FormLabel>
                                             <FormControl>
-                                                <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} variant={"outline"}>
-                                                    <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>
-                                                    <ToggleGroupItem value="false" className="hover:bg-primary hover:text-white">Non</ToggleGroupItem>
-                                                </ToggleGroup>
+                                                <Input placeholder="Barman" {...field} />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>

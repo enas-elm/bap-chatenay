@@ -65,7 +65,7 @@ export const QuestionLEffortMental: React.FC<LEffortMentalProps> = ({ onNextStep
                                     name="forteConcentrationRequise"
                                     render={({ field }) => (
                                         <FormItem className="flex flex-col gap-4">
-                                            <FormLabel>Votre espace de travail est-il inadapté ? (restreint, encombré... )</FormLabel>
+                                            <FormLabel>Votre travail demande-t-il beaucoup de concentration ?</FormLabel>
                                             <FormControl>
                                                 <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} variant={"outline"}>
                                                     <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>
@@ -84,7 +84,7 @@ export const QuestionLEffortMental: React.FC<LEffortMentalProps> = ({ onNextStep
                                     name="fatigueMentaleOuStress"
                                     render={({ field }) => (
                                         <FormItem className="flex flex-col gap-4">
-                                            <FormLabel>Etes-vous exposer à des produits (toxiques, poussières) ?</FormLabel>
+                                            <FormLabel>Ressentez-vous du de la fatigue mentale ou du stress lié à votre travail ?</FormLabel>
                                             <FormControl>
                                                 <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} variant={"outline"}>
                                                     <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>
@@ -105,7 +105,7 @@ export const QuestionLEffortMental: React.FC<LEffortMentalProps> = ({ onNextStep
                                     name="impactNegatifSurViePersonnelle"
                                     render={({ field }) => (
                                         <FormItem className="flex flex-col gap-4">
-                                            <FormLabel>Etes-vous exposer à des vibrations du corps entier (conduite) ou membres supérieurs (outils vibrants) ?</FormLabel>
+                                            <FormLabel>Votre travail impacte négativement votre vie personnelle ou votre santé en dehors du travail ?</FormLabel>
                                             <FormControl>
                                                 <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} variant={"outline"}>
                                                     <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>

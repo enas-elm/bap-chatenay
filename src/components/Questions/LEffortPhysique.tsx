@@ -29,6 +29,7 @@ export const QuestionLEffortPhysique: React.FC<LEffortPhysiqueProps> = ({ onNext
         positionStatique: z.string(),
         expositionRisquesPhysiques: z.string(),
         deplacementsFrequents: z.string(),
+        travailRepetitif: z.string(),
         problemesPhysiquesLiesAuTravail: z.string(),
     });
 
@@ -38,6 +39,7 @@ export const QuestionLEffortPhysique: React.FC<LEffortPhysiqueProps> = ({ onNext
             positionStatique: "",
             expositionRisquesPhysiques: "",
             deplacementsFrequents: "",
+            travailRepetitif: "",
             problemesPhysiquesLiesAuTravail: "",
         },
     })
@@ -69,7 +71,7 @@ export const QuestionLEffortPhysique: React.FC<LEffortPhysiqueProps> = ({ onNext
                                     name="positionStatique"
                                     render={({ field }) => (
                                         <FormItem className="flex flex-col gap-4">
-                                            <FormLabel>Votre espace de travail est-il inadapté ? (restreint, encombré... )</FormLabel>
+                                            <FormLabel>Etes - vous toujours dans la même position lors de votre travail ? (assis, debout... )</FormLabel>
                                             <FormControl>
                                                 <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} variant={"outline"}>
                                                     <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>
@@ -85,10 +87,10 @@ export const QuestionLEffortPhysique: React.FC<LEffortPhysiqueProps> = ({ onNext
                             <div className="form-item w-1/2">
                                 <FormField
                                     control={form.control}
-                                    name="problemesPhysiquesLiesAuTravail"
+                                    name="expositionRisquesPhysiques"
                                     render={({ field }) => (
                                         <FormItem className="flex flex-col gap-4">
-                                            <FormLabel>Etes-vous exposer à des produits (toxiques, poussières) ?</FormLabel>
+                                            <FormLabel>Êtes - vous régulièrement exposé(e) à des risques physiques dans votre travail(charges lourdes, posture contraignante, utilisation d'équipements lourds, etc.) ?</FormLabel>
                                             <FormControl>
                                                 <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} variant={"outline"}>
                                                     <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>
@@ -109,7 +111,7 @@ export const QuestionLEffortPhysique: React.FC<LEffortPhysiqueProps> = ({ onNext
                                     name="deplacementsFrequents"
                                     render={({ field }) => (
                                         <FormItem className="flex flex-col gap-4">
-                                            <FormLabel>Etes-vous exposer à des vibrations du corps entier (conduite) ou membres supérieurs (outils vibrants) ?</FormLabel>
+                                            <FormLabel>Faites - vous de nombreux déplacements et / ou longs ?</FormLabel>
                                             <FormControl>
                                                 <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} variant={"outline"}>
                                                     <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>
@@ -125,10 +127,31 @@ export const QuestionLEffortPhysique: React.FC<LEffortPhysiqueProps> = ({ onNext
                             <div className="form-item w-1/2">
                                 <FormField
                                     control={form.control}
-                                    name="deplacementsFrequents"
+                                    name="travailRepetitif"
                                     render={({ field }) => (
                                         <FormItem className="flex flex-col gap-4">
-                                            <FormLabel>Etes-vous exposer à des vibrations du corps entier (conduite) ou membres supérieurs (outils vibrants) ?</FormLabel>
+                                            <FormLabel>Le travail est-il répétitif ?</FormLabel>
+                                            <FormControl>
+                                                <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} variant={"outline"}>
+                                                    <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>
+                                                    <ToggleGroupItem value="false" className="hover:bg-primary hover:text-white">Non</ToggleGroupItem>
+                                                </ToggleGroup>
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="from-wrapper flex gap-11 w-full">
+                            <div className="form-item w-1/2">
+                                <FormField
+                                    control={form.control}
+                                    name="problemesPhysiquesLiesAuTravail"
+                                    render={({ field }) => (
+                                        <FormItem className="flex flex-col gap-4">
+                                            <FormLabel>Avez-vous eu des problèmes physiques récurrents ou des douleurs liées à votre travail ?</FormLabel>
                                             <FormControl>
                                                 <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} variant={"outline"}>
                                                     <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>
