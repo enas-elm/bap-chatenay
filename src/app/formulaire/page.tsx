@@ -37,8 +37,10 @@ const FormPage = () => {
             case 3:
                 return 'LEnvironnement';
             case 4:
-                return 'LEffortMental';
+                return 'LEffortPhysique';
             case 5:
+                return 'LEffortMental';
+            case 6:
                 return 'SatisfactionEtEvolutionDeCarriere';
             default:
                 return 'Resultat';
