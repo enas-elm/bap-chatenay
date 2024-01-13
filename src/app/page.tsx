@@ -24,7 +24,7 @@ export default function Home() {
             className: 'mt-5',
           })}
           href='/formulaire'
-          target='_blank'>
+        >
           Commencer maintenant{' '}
           <ArrowRight className='ml-2 h-5 w-5' />
         </Link>
