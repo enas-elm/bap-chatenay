@@ -1,4 +1,3 @@
-// components/QuestionForm.tsx
 'use client'
 
 import * as z from "zod"
@@ -38,7 +37,6 @@ const transportOptions = ["Voiture", "Transport en commun", "Vélo", "Marche", "
 export const QuestionHorairesDeTravail: React.FC<HorairesDeTravailProps> = ({ onNextStep, onPreviousStep }) => {
     const formSchema = z.object({
         moyenDeTransport: z.string().regex(/Voiture|Transport en commun|Vélo|Marche|Autre/, { message: "Veuillez indiquer votre moyen de transport." }),
-        // le regex doit prendre en compte cest format la 1h, 1min, 1s et 1h30, 1min30, 1s30 ou 1h30min, 1h30s, 1min30s ect
         tempsTrajet: z.string().regex(/^[0-9]{1,2}h[0-9]{1,2}min$|^[0-9]{1,2}h$|^[0-9]{1,2}min$|^[0-9]{1,2}s$|^[0-9]{1,2}h[0-9]{1,2}min[0-9]{1,2}s$|^[0-9]{1,2}h[0-9]{1,2}s$|^[0-9]{1,2}min[0-9]{1,2}s$/, { message: "Veuillez indiquer votre temps de trajet." }),
         horairesIrreguliers: z.string().regex(/true|false/, { message: "Veuillez indiquer si vos horaires sont irréguliers oui ou non" }),
         heuresSupplementaires: z.string().regex(/true|false/, { message: "Veuillez indiquer si vous faites des heures supplémentaires oui ou non" }),
@@ -59,15 +57,18 @@ export const QuestionHorairesDeTravail: React.FC<HorairesDeTravailProps> = ({ on
 
     // 2. Define a submit handler.
     const onSubmit = (values: z.infer<typeof formSchema>) => {
-        console.log(values);
         onNextStep(values);
     };
 
     return (
         <div className="flex flex-col justify-between h-full">
             <div className="flex flex-col gap-2 h-full">
-                <h3 className="text-3xl font-bold text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Etes-vous en usure professionnel ?</h3>
-                <p>Répondez à ce formulaire</p>
+                <h3 className="text-3xl font-bold text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
+                    Votre Horaires de Travail Contribuent-ils à l'Usure Professionnelle ?
+                </h3>
+                <p>
+                    Découvrez l'impact de vos horaires sur votre bien-être professionnel.
+                </p>
 
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 pt-28 flex flex-col justify-between h-full">

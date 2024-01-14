@@ -1,4 +1,3 @@
-// components/QuestionForm.tsx
 'use client'
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -14,8 +13,9 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
+import { Input } from "../ui/input"
 
-import { SatisfactionEtEvolutionDeCarriere } from "@/types/Form.jsx"
+import { SatisfactionEtEvolutionDeCarriere } from "@/types/Form"
 
 type SatisfactionEtEvolutionDeCarriereProps = {
     onNextStep: (response?: SatisfactionEtEvolutionDeCarriere) => void;
@@ -24,31 +24,37 @@ type SatisfactionEtEvolutionDeCarriereProps = {
 
 export const QuestionSatisfactionEtEvolutionDeCarriere: React.FC<SatisfactionEtEvolutionDeCarriereProps> = ({ onNextStep, onPreviousStep }) => {
     const formSchema = z.object({
-        espaceDeTravail: z.string(),
-        expositionADesRisques: z.string(),
-        expositionADesVibrations: z.string(),
+        satisfactionTravail: z.string(),
+        motivationPourTachesQuotidiennes: z.string(),
+        possibiliteEvolutionCarriere: z.string(),
+        optionsReconversion: z.string(),
     });
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            espaceDeTravail: "",
-            expositionADesRisques: "",
-            expositionADesVibrations: "",
+            satisfactionTravail: "",
+            motivationPourTachesQuotidiennes: "",
+            possibiliteEvolutionCarriere: "",
+            optionsReconversion: "",
         },
     })
 
     // 2. Define a submit handler.
     const onSubmit = (values: z.infer<typeof formSchema>) => {
-        console.log(values);
         onNextStep(values);
     };
 
     return (
         <div className="flex flex-col justify-between h-full">
             <div className="flex flex-col gap-2 h-full">
-                <h3 className="text-3xl font-bold text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Etes-vous en usure professionnel ?</h3>
-                <p>Répondez à ce formulaire</p>
+                <h3 className="text-3xl font-bold text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
+                    Votre Satisfaction et Évolution Professionnelle : Clés de votre Bien-être au Travail
+                </h3>
+
+                <p>
+                    Évaluez le degré de satisfaction dans votre carrière actuelle et les perspectives d'évolution.
+                </p>
 
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 pt-28 flex flex-col justify-between h-full">
@@ -57,10 +63,10 @@ export const QuestionSatisfactionEtEvolutionDeCarriere: React.FC<SatisfactionEtE
                             <div className="form-item w-1/2">
                                 <FormField
                                     control={form.control}
-                                    name="espaceDeTravail"
+                                    name="satisfactionTravail"
                                     render={({ field }) => (
                                         <FormItem className="flex flex-col gap-4">
-                                            <FormLabel>Votre espace de travail est-il inadapté ? (restreint, encombré... )</FormLabel>
+                                            <FormLabel>VÊtes-vous satisfait(e) de votre travail actuel ?</FormLabel>
                                             <FormControl>
                                                 <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} variant={"outline"}>
                                                     <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>
@@ -76,10 +82,10 @@ export const QuestionSatisfactionEtEvolutionDeCarriere: React.FC<SatisfactionEtE
                             <div className="form-item w-1/2">
                                 <FormField
                                     control={form.control}
-                                    name="expositionADesRisques"
+                                    name="motivationPourTachesQuotidiennes"
                                     render={({ field }) => (
                                         <FormItem className="flex flex-col gap-4">
-                                            <FormLabel>Etes-vous exposer à des produits (toxiques, poussières) ?</FormLabel>
+                                            <FormLabel>Ressentez-vous de la motivation pour accomplir vos tâches quotidiennes ?</FormLabel>
                                             <FormControl>
                                                 <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} variant={"outline"}>
                                                     <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>
@@ -97,15 +103,31 @@ export const QuestionSatisfactionEtEvolutionDeCarriere: React.FC<SatisfactionEtE
                             <div className="form-item w-1/2">
                                 <FormField
                                     control={form.control}
-                                    name="expositionADesVibrations"
+                                    name="possibiliteEvolutionCarriere"
                                     render={({ field }) => (
                                         <FormItem className="flex flex-col gap-4">
-                                            <FormLabel>Etes-vous exposer à des vibrations du corps entier (conduite) ou membres supérieurs (outils vibrants) ?</FormLabel>
+                                            <FormLabel>Envisagez-vous la possibilité de faire évoluer votre carrière ?</FormLabel>
                                             <FormControl>
                                                 <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} variant={"outline"}>
                                                     <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>
                                                     <ToggleGroupItem value="false" className="hover:bg-primary hover:text-white">Non</ToggleGroupItem>
                                                 </ToggleGroup>
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+
+                            <div className="form-item w-1/2">
+                                <FormField
+                                    control={form.control}
+                                    name="optionsReconversion"
+                                    render={({ field }) => (
+                                        <FormItem className="flex flex-col gap-4">
+                                            <FormLabel>Dans quel(s) métier(s) pouvez-vous envisagez une reconversion ?</FormLabel>
+                                            <FormControl>
+                                                <Input placeholder="Barman" {...field} />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>

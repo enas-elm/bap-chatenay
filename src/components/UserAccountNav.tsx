@@ -1,4 +1,3 @@
-// import { getUserSubscriptionPlan } from '@/lib/stripe'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -25,8 +24,6 @@ const UserAccountNav = async ({
   imageUrl,
   name,
 }: UserAccountNavProps) => {
-  // const subscriptionPlan = await getUserSubscriptionPlan()
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger

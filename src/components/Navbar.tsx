@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import MaxWidthWrapper from './MaxWidthWrapper'
+import MaxWidthWrapper from './layouts/MaxWidthWrapper'
 import { buttonVariants } from './ui/button'
 import {
     LoginLink,
@@ -7,7 +7,6 @@ import {
     getKindeServerSession,
 } from '@kinde-oss/kinde-auth-nextjs/server'
 import MobileNav from './MobileNav'
-import { ArrowRight } from 'lucide-react'
 import UserAccountNav from './UserAccountNav'
 
 

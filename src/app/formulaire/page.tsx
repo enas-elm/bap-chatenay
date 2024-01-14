@@ -37,16 +37,15 @@ const FormPage = () => {
             case 3:
                 return 'LEnvironnement';
             case 4:
-                return 'LEffortMental';
+                return 'LEffortPhysique';
             case 5:
+                return 'LEffortMental';
+            case 6:
                 return 'SatisfactionEtEvolutionDeCarriere';
             default:
                 return 'Resultat';
         }
     };
-
-    console.log(responses);
-
 
     return (
         <div className='form flex h-screen relative'>
@@ -60,10 +59,10 @@ const FormPage = () => {
                 />
             </div>
             <div className=' w-1/2 flex flex-col h-full relative z-10'>
-                <ProgressBar currentStep={currentStep} steps={['Introductions', 'Information personnelles', 'Horaires de travail', 'L’environnement', 'L’effort mental', 'Satisfaction et évolution de carrière', 'Résultat']} />
+                <ProgressBar currentStep={currentStep} steps={['Introductions', 'Information personnelles', 'Horaires de travail', 'L’environnement', 'L’effort physique ', 'L’effort mental', 'Satisfaction et évolution de carrière', 'Résultat']} />
             </div>
             <div className='w-3/4 flex flex-col h-full bg-white z-10'>
-                <QuestionForm step={currentStep} onNextStep={onNextStep} onPreviousStep={onPreviousStep} />
+                <QuestionForm step={currentStep} onNextStep={onNextStep} onPreviousStep={onPreviousStep} getResponse={responses} />
             </div>
         </div>
     );

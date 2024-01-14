@@ -1,5 +1,3 @@
-'use client'
-import { useState } from "react";
 import { Button } from "@ui/button";
 import {
     Card,
@@ -11,7 +9,7 @@ import {
 } from "@ui/card"
 import Link from "next/link";
 import { Separator } from "@ui/separator";
-import { ChevronRight, Phone, PhoneCall } from "lucide-react";
+import { ChevronRight, Phone } from "lucide-react";
 
 export const Result1 = () => {
     return (

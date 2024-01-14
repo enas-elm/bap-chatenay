@@ -14,26 +14,30 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
-import { LEffortMental } from "@/types/Form"
+import { LEffortPhysique } from "@/types/Form"
 
-type LEffortMentalProps = {
-    onNextStep: (response?: LEffortMental) => void;
+type LEffortPhysiqueProps = {
+    onNextStep: (response?: LEffortPhysique) => void;
     onPreviousStep: () => void;
 };
 
-export const QuestionLEffortMental: React.FC<LEffortMentalProps> = ({ onNextStep, onPreviousStep }) => {
+export const QuestionLEffortPhysique: React.FC<LEffortPhysiqueProps> = ({ onNextStep, onPreviousStep }) => {
     const formSchema = z.object({
-        forteConcentrationRequise: z.string(),
-        fatigueMentaleOuStress: z.string(),
-        impactNegatifSurViePersonnelle: z.string(),
+        positionStatique: z.string(),
+        expositionRisquesPhysiques: z.string(),
+        deplacementsFrequents: z.string(),
+        travailRepetitif: z.string(),
+        problemesPhysiquesLiesAuTravail: z.string(),
     });
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            forteConcentrationRequise: "",
-            fatigueMentaleOuStress: "",
-            impactNegatifSurViePersonnelle: "",
+            positionStatique: "",
+            expositionRisquesPhysiques: "",
+            deplacementsFrequents: "",
+            travailRepetitif: "",
+            problemesPhysiquesLiesAuTravail: "",
         },
     })
 
@@ -61,10 +65,10 @@ export const QuestionLEffortMental: React.FC<LEffortMentalProps> = ({ onNextStep
                             <div className="form-item w-1/2">
                                 <FormField
                                     control={form.control}
-                                    name="forteConcentrationRequise"
+                                    name="positionStatique"
                                     render={({ field }) => (
                                         <FormItem className="flex flex-col gap-4">
-                                            <FormLabel>Votre travail demande-t-il beaucoup de concentration ?</FormLabel>
+                                            <FormLabel>Etes - vous toujours dans la même position lors de votre travail ? (assis, debout... )</FormLabel>
                                             <FormControl>
                                                 <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} variant={"outline"}>
                                                     <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>
@@ -80,10 +84,10 @@ export const QuestionLEffortMental: React.FC<LEffortMentalProps> = ({ onNextStep
                             <div className="form-item w-1/2">
                                 <FormField
                                     control={form.control}
-                                    name="fatigueMentaleOuStress"
+                                    name="expositionRisquesPhysiques"
                                     render={({ field }) => (
                                         <FormItem className="flex flex-col gap-4">
-                                            <FormLabel>Ressentez-vous du de la fatigue mentale ou du stress lié à votre travail ?</FormLabel>
+                                            <FormLabel>Êtes - vous régulièrement exposé(e) à des risques physiques dans votre travail(charges lourdes, posture contraignante, utilisation d'équipements lourds, etc.) ?</FormLabel>
                                             <FormControl>
                                                 <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} variant={"outline"}>
                                                     <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>
@@ -101,10 +105,50 @@ export const QuestionLEffortMental: React.FC<LEffortMentalProps> = ({ onNextStep
                             <div className="form-item w-1/2">
                                 <FormField
                                     control={form.control}
-                                    name="impactNegatifSurViePersonnelle"
+                                    name="deplacementsFrequents"
                                     render={({ field }) => (
                                         <FormItem className="flex flex-col gap-4">
-                                            <FormLabel>Votre travail impacte négativement votre vie personnelle ou votre santé en dehors du travail ?</FormLabel>
+                                            <FormLabel>Faites - vous de nombreux déplacements et / ou longs ?</FormLabel>
+                                            <FormControl>
+                                                <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} variant={"outline"}>
+                                                    <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>
+                                                    <ToggleGroupItem value="false" className="hover:bg-primary hover:text-white">Non</ToggleGroupItem>
+                                                </ToggleGroup>
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+
+                            <div className="form-item w-1/2">
+                                <FormField
+                                    control={form.control}
+                                    name="travailRepetitif"
+                                    render={({ field }) => (
+                                        <FormItem className="flex flex-col gap-4">
+                                            <FormLabel>Le travail est-il répétitif ?</FormLabel>
+                                            <FormControl>
+                                                <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} variant={"outline"}>
+                                                    <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>
+                                                    <ToggleGroupItem value="false" className="hover:bg-primary hover:text-white">Non</ToggleGroupItem>
+                                                </ToggleGroup>
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="from-wrapper flex gap-11 w-full">
+                            <div className="form-item w-1/2">
+                                <FormField
+                                    control={form.control}
+                                    name="problemesPhysiquesLiesAuTravail"
+                                    render={({ field }) => (
+                                        <FormItem className="flex flex-col gap-4">
+                                            <FormLabel>Avez-vous eu des problèmes physiques récurrents ou des douleurs liées à votre travail ?</FormLabel>
                                             <FormControl>
                                                 <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} variant={"outline"}>
                                                     <ToggleGroupItem value="true" className="hover:bg-primary hover:text-white">Oui</ToggleGroupItem>
