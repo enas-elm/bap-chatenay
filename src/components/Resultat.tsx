@@ -16,9 +16,6 @@ export const Resultat = ({ getResponse }: ResultProps) => {
         setShowResult1(score >= seuilUsure);
     }, [getResponse]);
 
-
-    // create useEffect function to call api route 
-
     useEffect(() => {
         // create a function to call api route
         const createNewUser = async () => {
