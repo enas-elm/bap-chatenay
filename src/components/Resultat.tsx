@@ -2,6 +2,7 @@
 import { useState, useEffect, use } from "react";
 import { Result1 } from "./Questions/Result1";
 import { Result2 } from "./Questions/Result2";
+import { checkIfUserExists, createUser } from "./apiRequest/users";
 
 type ResultProps = {
     getResponse: any; // Remplacez 'any' par le type de données approprié
@@ -11,29 +12,24 @@ export const Resultat = ({ getResponse }: ResultProps) => {
     const [showResult1, setShowResult1] = useState(false);
 
     useEffect(() => {
-        const score = calculerScoreUsure(getResponse);
-        const seuilUsure = 15;
-        setShowResult1(score >= seuilUsure);
+        // const score = calculerScoreUsure(getResponse);
+        // const seuilUsure = 15;
+        // setShowResult1(score >= seuilUsure);
     }, [getResponse]);
 
     useEffect(() => {
-        // create a function to call api route
-        const createNewUser = async () => {
+        const sendDataToDb = async (email: string) => {
             try {
-                const response = await fetch('/api/POST/createUser', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(getResponse)
-                });
-                const data = await response.json();
-                console.log(data);
+                const response = await checkIfUserExists(email);
+                if (response.message === 'User not found') {
+                    await createUser(getResponse);
+                }
             } catch (error) {
                 console.log(error);
             }
         }
-        createNewUser();
+
+        sendDataToDb(getResponse.InformationPersonnelles.email);
     }, [getResponse])
 
 
