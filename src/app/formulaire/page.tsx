@@ -50,7 +50,7 @@ const FormPage = () => {
     return (
         <div className='form flex h-screen relative'>
             <div className='form-image absolute z-0'>
-                <Image
+                <Image  className='object-cover'
                     src="/images/bg.jpg"
                     alt="Caesia Logo"
                     width={1440}
