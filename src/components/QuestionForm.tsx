@@ -23,6 +23,7 @@ export const QuestionForm = ({ step, onNextStep, onPreviousStep, getResponse }: 
             case 1:
                 return <QuestionInformationPersonnelles onNextStep={onNextStep} onPreviousStep={onPreviousStep} />;
             case 2:
+                // return <Resultat getResponse={getResponse} />
                 return <QuestionHorairesDeTravail onNextStep={onNextStep} onPreviousStep={onPreviousStep} />;
             case 3:
                 return <QuestionLEnvironnement onNextStep={onNextStep} onPreviousStep={onPreviousStep} />;
