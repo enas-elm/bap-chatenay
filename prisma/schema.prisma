@@ -10,16 +10,74 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model UserResult {
-  id        Int      @id @default(autoincrement())
-  userId    String? // Utilisez `String?` si l'utilisateur peut être non connecté
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model User {
+  id            Int            @id @default(autoincrement())
+  email         String         @unique
+  nom           String?
+  prenom        String?
+  phone         String?
+  birthdate     String?
+  job           String?
+  formResponses FormResponse[]
+}
 
-  InformationPersonnelles Json?
-  HorairesDeTravail       Json?
-  LEnvironnement          Json?
-  LEffortMental           Json?
-  SatisfactionEtEvolution Json?
-  ResultatFinal           Json?
+model FormResponse {
+  id                                Int                                @id @default(autoincrement())
+  userId                            Int
+  user                              User                               @relation(fields: [userId], references: [id])
+  horairesDeTravail                 HorairesDeTravail?
+  effortMental                      EffortMental?
+  effortPhysique                    EffortPhysique?
+  environnement                     Environnement?
+  satisfactionEtEvolutionDeCarriere SatisfactionEtEvolutionDeCarriere?
+}
+
+model HorairesDeTravail {
+  id                    Int          @id @default(autoincrement())
+  heuresSupplementaires String?
+  heuresTravailSemaine  String?
+  horairesIrreguliers   String?
+  moyenDeTransport      String?
+  tempsTrajet           String?
+  formResponse          FormResponse @relation(fields: [formResponseId], references: [id])
+  formResponseId        Int          @unique
+}
+
+model EffortMental {
+  id                             Int          @id @default(autoincrement())
+  fatigueMentaleOuStress         String?
+  forteConcentrationRequise      String?
+  impactNegatifSurViePersonnelle String?
+  formResponse                   FormResponse @relation(fields: [formResponseId], references: [id])
+  formResponseId                 Int          @unique
+}
+
+model EffortPhysique {
+  id                              Int          @id @default(autoincrement())
+  deplacementsFrequents           String?
+  expositionRisquesPhysiques      String?
+  positionStatique                String?
+  problemesPhysiquesLiesAuTravail String?
+  travailRepetitif                String?
+  formResponse                    FormResponse @relation(fields: [formResponseId], references: [id])
+  formResponseId                  Int          @unique
+}
+
+model Environnement {
+  id                         Int          @id @default(autoincrement())
+  espaceDeTravailInadapte    String?
+  expositionProduitsToxiques String?
+  expositionVibrations       String?
+  formResponse               FormResponse @relation(fields: [formResponseId], references: [id])
+  formResponseId             Int          @unique
+}
+
+model SatisfactionEtEvolutionDeCarriere {
+  id                               Int          @id @default(autoincrement())
+  motivationPourTachesQuotidiennes String?
+  optionsReconversion              String?
+  possibiliteEvolutionCarriere     String?
+  satisfactionTravail              String?
+  formResponse                     FormResponse @relation(fields: [formResponseId], references: [id])
+  formResponseId                   Int          @unique
 }

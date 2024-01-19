@@ -66,15 +66,15 @@ export const QuestionInformationPersonnelles: React.FC<InformationPersonnellesPr
     return (
         <div className="flex flex-col justify-between h-full">
             <div className="flex flex-col gap-2 h-full">
-                <h3 className="text-3xl font-bold text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
-                    Comment vos Informations Personnelles Influencent-elles votre Bien-être au Travail ?
+            <h3 className="text-3xl font-bold text-gray-900 sm:text-3xl">
+                    Comment vos informations personnelles influencent-elles votre bien-être au travail ?
                 </h3>
                 <p>
                     Évaluez le lien entre vos caractéristiques personnelles et votre expérience professionnelle.
                 </p>
 
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 pt-28 flex flex-col justify-between h-full">
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 pt-14 flex flex-col justify-between h-full">
                         <div className="from-container flex flex-col gap-10">
 
                             <div className="from-wrapper flex gap-11 w-full">
@@ -84,7 +84,7 @@ export const QuestionInformationPersonnelles: React.FC<InformationPersonnellesPr
                                         name="gender"
                                         render={({ field }) => (
                                             <FormItem className="flex flex-col gap-4">
-                                                <FormLabel>Votre Gender</FormLabel>
+                                                <FormLabel>Genre</FormLabel>
                                                 <FormControl>
                                                     <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value} size={"lg"} className="flex gap-8" variant={"outline"}>
                                                         <ToggleGroupItem value="Homme" className="hover:bg-primary hover:text-white">Homme</ToggleGroupItem>
@@ -244,7 +244,7 @@ export const QuestionInformationPersonnelles: React.FC<InformationPersonnellesPr
                             </div>
                         </div>
 
-                        <div className="form-actions flex justify-between w-full pb-28">
+                        <div className="form-actions flex justify-between w-full">
                             <Button variant={"secondary"} onClick={onPreviousStep}>Précédent</Button>
                             <Button type="submit" >Suivant</Button>
                         </div>

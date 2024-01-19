@@ -38,7 +38,7 @@ export const QuestionForm = ({ step, onNextStep, onPreviousStep, getResponse }: 
     };
 
     return (
-        <div className="h-full px-20 pt-28">
+        <div className="h-full px-20 py-20">
             {renderQuestionComponent()}
         </div>
     );

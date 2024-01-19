@@ -48,7 +48,7 @@ export const QuestionSatisfactionEtEvolutionDeCarriere: React.FC<SatisfactionEtE
     return (
         <div className="flex flex-col justify-between h-full">
             <div className="flex flex-col gap-2 h-full">
-                <h3 className="text-3xl font-bold text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
+            <h3 className="text-3xl font-bold text-gray-900 sm:text-3xl">
                     Votre Satisfaction et Évolution Professionnelle : Clés de votre Bien-être au Travail
                 </h3>
 
@@ -57,7 +57,7 @@ export const QuestionSatisfactionEtEvolutionDeCarriere: React.FC<SatisfactionEtE
                 </p>
 
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 pt-28 flex flex-col justify-between h-full">
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 pt-14 flex flex-col justify-between h-full">
 
                         <div className="from-wrapper flex gap-11 w-full">
                             <div className="form-item w-1/2">
@@ -136,7 +136,7 @@ export const QuestionSatisfactionEtEvolutionDeCarriere: React.FC<SatisfactionEtE
                             </div>
                         </div>
 
-                        <div className="form-actions flex justify-between w-full pb-28">
+                        <div className="form-actions flex justify-between w-full">
                             <Button variant={"secondary"} onClick={onPreviousStep}>Précédent</Button>
                             <Button type="submit" >Suivant</Button>
                         </div>

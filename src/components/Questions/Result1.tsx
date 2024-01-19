@@ -25,7 +25,7 @@ export const Result1 = () => {
             </div>
 
             <div className="flex flex-col gap-y-9">
-                <Card>
+            <Card className="bg-citrus/25 text-brownGreen border-brownGreen ">
                     <CardHeader>
                         <CardDescription>Prenez rendez-vous avec un de nos agent de mairie pour mieux vous guider dans votre démarche de reconversion</CardDescription>
                     </CardHeader>
@@ -52,7 +52,7 @@ export const Result1 = () => {
                 </Card>
             </div>
 
-            <div className="flex justify-between w-full pb-28">
+            <div className="flex justify-between w-full">
                 <Link href={"/"}>
                     <Button variant={"secondary"}>Revenir à l’accueil</Button>
                 </Link>

@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { Result1 } from "./Questions/Result1";
 import { Result2 } from "./Questions/Result2";
 
@@ -15,6 +15,27 @@ export const Resultat = ({ getResponse }: ResultProps) => {
         const seuilUsure = 15;
         setShowResult1(score >= seuilUsure);
     }, [getResponse]);
+
+    useEffect(() => {
+        // create a function to call api route
+        const createNewUser = async () => {
+            try {
+                const response = await fetch('/api/POST/createUser', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(getResponse)
+                });
+                const data = await response.json();
+                console.log(data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        createNewUser();
+    }, [getResponse])
+
 
     return (
         <div className="flex flex-col justify-between h-full">
