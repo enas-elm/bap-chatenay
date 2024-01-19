@@ -8,6 +8,7 @@ import {
 } from '@kinde-oss/kinde-auth-nextjs/server'
 import MobileNav from './MobileNav'
 import UserAccountNav from './UserAccountNav'
+import Image from 'next/image'
 
 
 const Navbar = async () => {
@@ -20,8 +21,15 @@ const Navbar = async () => {
                 <div className='flex h-14 items-center justify-between border-b border-zinc-200'>
                     <Link
                         href='/'
-                        className='flex z-40 font-semibold'>
-                        <span>BAP Chatenay</span>
+                        className='flex z-40 font-semibold items-center gap-x-3'>
+                        <Image
+                            src='/logo.svg'
+                            alt='BAP Chatenay'
+                            className='h-10 w-auto'
+                            width={40}
+                            height={40}
+                        />
+                        <span>Châteney-Malabry</span>
                     </Link>
 
                     <MobileNav isAuth={!!user} />
