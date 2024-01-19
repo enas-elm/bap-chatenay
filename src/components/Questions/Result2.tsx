@@ -15,7 +15,7 @@ export const Result2 = () => {
     return (
         <div className="flex flex-col justify-between h-full">
             <div className="flex flex-col gap-2">
-                <h3 className="text-3xl font-bold text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Votre évaluation ne semble pas indiquer une usure professionnelle</h3>
+            <h3 className="text-3xl font-bold text-gray-900 sm:text-3xl">Votre évaluation ne semble pas indiquer une usure professionnelle</h3>
 
                 <p className="pt-8">
                     Même si l'évaluation ne montre pas de signes évidents d'usure professionnelle, il est essentiel de prendre soin de votre bien-être au travail.
@@ -28,19 +28,19 @@ export const Result2 = () => {
                 </p>
             </div>
 
-            <div className="flex flex-col gap-y-9">
-                <Card>
+            <div className="flex flex-col gap-y-9 my-10">
+                <Card className="bg-citrus/25 text-brownGreen border-brownGreen ">
                     <CardHeader>
-                        <CardDescription>Prenez rendez-vous avec un de nos agent de mairie pour mieux vous guider dans votre démarche de reconversion</CardDescription>
+                        <CardDescription className="text-brownGreen">Prenez rendez-vous avec un de nos agent de mairie pour mieux vous guider dans votre démarche de reconversion</CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <p className="flex justify-between">Prenez un rendez-vous maintenant <ChevronRight /> </p>
+                        <p className="flex justify-between font-semibold">Prenez un rendez-vous maintenant <ChevronRight /> </p>
                     </CardContent>
                 </Card>
 
                 <Separator />
 
-                <Card className="p-7 flex justify-between items-center">
+                <Card className="p-7 flex justify-between items-center border-gray-800">
                     <div>
                         <CardContent className="p-0 pb-3">
                             <p>Appeler le <span className=" font-bold"> 06 23 45 67 89</span></p>
@@ -56,7 +56,7 @@ export const Result2 = () => {
                 </Card>
             </div>
 
-            <div className="flex justify-between w-full pb-28">
+            <div className="flex justify-between w-full">
                 <Link href={"/"}>
                     <Button variant={"secondary"}>Revenir à l’accueil</Button>
                 </Link>

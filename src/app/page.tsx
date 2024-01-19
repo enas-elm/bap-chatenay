@@ -40,12 +40,12 @@ export default function Home() {
 
             <div className='px-20 bg-gray-100 py-8'>
                 <div className='text-center'>
-                    <h2 className='text-3xl font-bold'>Découvrez les Bénéfices de Notre Service</h2>
+                    <h2 className='text-3xl font-bold'>Découvrez les bénéfices de notre service</h2>
                     <p className='mt-2 text-zinc-700'>Profitez d'une approche personnalisée et complète pour évaluer et gérer l'usure professionnelle</p>
                 </div>
-                <div className='flex w-full items-center justify-center mt-9 gap-10'>
+                <div className='flex flex-wrap w-full items-stretch justify-center mt-9 gap-10'>
                     {/* Carte 1 */}
-                    <Card>
+                    <Card className='w-1/4'>
                         <CardHeader>
                             <CardTitle>Évaluation Précise</CardTitle>
                             <CardDescription>Détection fiable de l'usure</CardDescription>
@@ -59,7 +59,7 @@ export default function Home() {
                     </Card>
 
                     {/* Carte 2 */}
-                    <Card>
+                    <Card className='w-1/4'>
                         <CardHeader>
                             <CardTitle>Tableau de Bord Intuitif</CardTitle>
                             <CardDescription>Suivi et gestion facilités</CardDescription>
@@ -73,7 +73,7 @@ export default function Home() {
                     </Card>
 
                     {/* Carte 3 */}
-                    <Card>
+                    <Card className='w-1/4'>
                         <CardHeader>
                             <CardTitle>Ressources Utiles</CardTitle>
                             <CardDescription>Accès à des informations clés</CardDescription>
@@ -86,7 +86,7 @@ export default function Home() {
                         </CardFooter>
                     </Card>
                     {/* Carte 4 */}
-                    <Card>
+                    <Card className='w-1/4'>
                         <CardHeader>
                             <CardTitle>Support Spécialisé</CardTitle>
                             <CardDescription>Accompagnement personnalisé</CardDescription>
@@ -100,7 +100,7 @@ export default function Home() {
                     </Card>
 
                     {/* Carte 5 */}
-                    <Card>
+                    <Card className='w-1/4'>
                         <CardHeader>
                             <CardTitle>Prévention et Sensibilisation</CardTitle>
                             <CardDescription>Agir avant l'apparition du problème</CardDescription>
