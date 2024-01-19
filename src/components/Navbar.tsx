@@ -25,9 +25,11 @@ const Navbar = async () => {
                         <Image
                             src='/logo.svg'
                             alt='BAP Chatenay'
-                            className='h-10 w-auto'
-                            width={40}
-                            height={40}
+                            width={50}
+                            height={50}
+                            style={{
+                                objectFit: 'cover',
+                            }}
                         />
                         <span>Châteney-Malabry</span>
                     </Link>

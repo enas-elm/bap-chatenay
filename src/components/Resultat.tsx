@@ -3,35 +3,20 @@ import { useState, useEffect, use } from "react";
 import { Result1 } from "./Questions/Result1";
 import { Result2 } from "./Questions/Result2";
 import { checkIfUserExists, createUser } from "./apiRequest/users";
+import { ResponseType } from "@/types/Form";
 
 type ResultProps = {
-    getResponse: any; // Remplacez 'any' par le type de données approprié
+    dataFormResponse: ResponseType;
 };
 
-export const Resultat = ({ getResponse }: ResultProps) => {
+export const Resultat = ({ dataFormResponse }: ResultProps) => {
     const [showResult1, setShowResult1] = useState(false);
 
     useEffect(() => {
-        // const score = calculerScoreUsure(getResponse);
-        // const seuilUsure = 15;
-        // setShowResult1(score >= seuilUsure);
-    }, [getResponse]);
-
-    useEffect(() => {
-        const sendDataToDb = async (email: string) => {
-            try {
-                const response = await checkIfUserExists(email);
-                if (response.message === 'User not found') {
-                    await createUser(getResponse);
-                }
-            } catch (error) {
-                console.log(error);
-            }
-        }
-
-        sendDataToDb(getResponse.InformationPersonnelles.email);
-    }, [getResponse])
-
+        const score = calculerScoreUsure(dataFormResponse);
+        const seuilUsure = 15;
+        setShowResult1(score >= seuilUsure);
+    }, []);
 
     return (
         <div className="flex flex-col justify-between h-full">
