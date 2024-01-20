@@ -13,9 +13,9 @@ export const Resultat = ({ dataFormResponse }: ResultProps) => {
     const [showResult1, setShowResult1] = useState(false);
 
     useEffect(() => {
-        // const score = calculerScoreUsure(dataFormResponse);
-        // const seuilUsure = 15;
-        // setShowResult1(score >= seuilUsure);
+        const score = calculerScoreUsure(dataFormResponse);
+        const seuilUsure = 15;
+        setShowResult1(score >= seuilUsure);
 
         const apiCalls = async () => {
             const email = dataFormResponse?.InformationPersonnelles?.email;
