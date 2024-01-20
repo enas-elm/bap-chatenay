@@ -3,7 +3,7 @@ export type InformationPersonnelles = {
     nom: string;
     prenom: string;
     phone: string;
-    email: string;
+    email: string | undefined;
     birthdate: string;
     job: string;
     hasDisabilityOrIllness?: "" | "true" | "false";

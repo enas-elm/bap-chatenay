@@ -45,13 +45,13 @@ export const QuestionInformationPersonnelles: React.FC<InformationPersonnellesPr
         resolver: zodResolver(formSchema),
         defaultValues: {
             gender: undefined,
-            nom: "",
-            prenom: "",
-            phone: "",
-            email: "",
-            birthdate: "",
-            job: "",
-            hasDisabilityOrIllness: undefined,
+            nom: "yy",
+            prenom: "yy",
+            phone: "0658292330",
+            email: "yy@gmail.com",
+            birthdate: "12/05/2001",
+            job: "yy",
+            hasDisabilityOrIllness: "false",
             disabilityOrIllnessDetails: "",
         },
     })
@@ -66,7 +66,7 @@ export const QuestionInformationPersonnelles: React.FC<InformationPersonnellesPr
     return (
         <div className="flex flex-col justify-between h-full">
             <div className="flex flex-col gap-2 h-full">
-            <h3 className="text-3xl font-bold text-gray-900 sm:text-3xl">
+                <h3 className="text-3xl font-bold text-gray-900 sm:text-3xl">
                     Comment vos informations personnelles influencent-elles votre bien-être au travail ?
                 </h3>
                 <p>
