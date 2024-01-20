@@ -17,50 +17,51 @@ export const Resultat = ({ dataFormResponse }: ResultProps) => {
         // const seuilUsure = 15;
         // setShowResult1(score >= seuilUsure);
 
-
         const apiCalls = async () => {
             const email = dataFormResponse?.InformationPersonnelles?.email;
+            if (!email) {
+                console.error('Aucun email fourni dans dataFormResponse');
+                return;
+            }
+
+            let userId;
             const userExists = await checkIfUserExists(email);
+
             if (userExists.message === 'User not found') {
                 await createUser(dataFormResponse);
-                const user = await getUserId(email);
-                const userId = user.body.id;
-                const data = {
-                    userId: userId,
-                }
-                const linkUserToResponse = await associateResponseToUser(data);
-                const responseId = linkUserToResponse.body.body.id;
-                const Answersdata = {
-                    formResponseId: responseId,
-                    HorairesDeTravail: dataFormResponse.HorairesDeTravail,
-                    InformationPersonnelles: dataFormResponse.InformationPersonnelles,
-                    LEnvironnement: dataFormResponse.LEnvironnement,
-                    LEffortPhysique: dataFormResponse.LEffortPhysique,
-                    LEffortMental: dataFormResponse.LEffortMental,
-                    SatisfactionEtEvolutionDeCarriere: dataFormResponse.SatisfactionEtEvolutionDeCarriere,
-                }
-                await createAnswers(Answersdata);
-            } else {
-                const user = await getUserId(email);
-                const userId = user.body.id;
-                const data = {
-                    userId: userId,
-                }
-                const linkUserToResponse = await associateResponseToUser(data);
-                const responseId = linkUserToResponse.body.body.id;
-                const Answersdata = {
-                    formResponseId: responseId,
-                    HorairesDeTravail: dataFormResponse.HorairesDeTravail,
-                    InformationPersonnelles: dataFormResponse.InformationPersonnelles,
-                    LEnvironnement: dataFormResponse.LEnvironnement,
-                    LEffortPhysique: dataFormResponse.LEffortPhysique,
-                    LEffortMental: dataFormResponse.LEffortMental,
-                    SatisfactionEtEvolutionDeCarriere: dataFormResponse.SatisfactionEtEvolutionDeCarriere,
-                }
-                await createAnswers(Answersdata);
             }
-        }
-        apiCalls();
+
+            const user = await getUserId(email);
+            if (!user || !user.body) {
+                console.error('Impossible de récupérer l\'ID de l\'utilisateur');
+                return;
+            }
+
+            userId = user.body.id;
+            const linkUserToResponse = await associateResponseToUser({ userId: userId });
+            if (!linkUserToResponse || !linkUserToResponse.body) {
+                console.error('Impossible de lier l\'utilisateur à la réponse');
+                return;
+            }
+
+            const responseId = linkUserToResponse.body.body.id;
+            const Answersdata = {
+                formResponseId: responseId,
+                HorairesDeTravail: dataFormResponse.HorairesDeTravail,
+                InformationPersonnelles: dataFormResponse.InformationPersonnelles,
+                LEnvironnement: dataFormResponse.LEnvironnement,
+                LEffortPhysique: dataFormResponse.LEffortPhysique,
+                LEffortMental: dataFormResponse.LEffortMental,
+                SatisfactionEtEvolutionDeCarriere: dataFormResponse.SatisfactionEtEvolutionDeCarriere,
+            };
+
+            await createAnswers(Answersdata);
+        };
+
+        apiCalls().catch(error => {
+            console.error('Une erreur est survenue lors des appels API:', error);
+        });
+
     }, []);
 
     return (
