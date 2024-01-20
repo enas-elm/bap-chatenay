@@ -2,7 +2,7 @@
 import { useState, useEffect, use } from "react";
 import { Result1 } from "./Questions/Result1";
 import { Result2 } from "./Questions/Result2";
-import { checkIfUserExists, createUser } from "./apiRequest/users";
+import { checkIfUserExists, createUser, getUserId, createAnswers, associateResponseToUser } from "./apiRequest/formRequest";
 import { ResponseType } from "@/types/Form";
 
 type ResultProps = {
@@ -13,9 +13,54 @@ export const Resultat = ({ dataFormResponse }: ResultProps) => {
     const [showResult1, setShowResult1] = useState(false);
 
     useEffect(() => {
-        const score = calculerScoreUsure(dataFormResponse);
-        const seuilUsure = 15;
-        setShowResult1(score >= seuilUsure);
+        // const score = calculerScoreUsure(dataFormResponse);
+        // const seuilUsure = 15;
+        // setShowResult1(score >= seuilUsure);
+
+
+        const apiCalls = async () => {
+            const email = dataFormResponse?.InformationPersonnelles?.email;
+            const userExists = await checkIfUserExists(email);
+            if (userExists.message === 'User not found') {
+                await createUser(dataFormResponse);
+                const user = await getUserId(email);
+                const userId = user.body.id;
+                const data = {
+                    userId: userId,
+                }
+                const linkUserToResponse = await associateResponseToUser(data);
+                const responseId = linkUserToResponse.body.body.id;
+                const Answersdata = {
+                    formResponseId: responseId,
+                    HorairesDeTravail: dataFormResponse.HorairesDeTravail,
+                    InformationPersonnelles: dataFormResponse.InformationPersonnelles,
+                    LEnvironnement: dataFormResponse.LEnvironnement,
+                    LEffortPhysique: dataFormResponse.LEffortPhysique,
+                    LEffortMental: dataFormResponse.LEffortMental,
+                    SatisfactionEtEvolutionDeCarriere: dataFormResponse.SatisfactionEtEvolutionDeCarriere,
+                }
+                await createAnswers(Answersdata);
+            } else {
+                const user = await getUserId(email);
+                const userId = user.body.id;
+                const data = {
+                    userId: userId,
+                }
+                const linkUserToResponse = await associateResponseToUser(data);
+                const responseId = linkUserToResponse.body.body.id;
+                const Answersdata = {
+                    formResponseId: responseId,
+                    HorairesDeTravail: dataFormResponse.HorairesDeTravail,
+                    InformationPersonnelles: dataFormResponse.InformationPersonnelles,
+                    LEnvironnement: dataFormResponse.LEnvironnement,
+                    LEffortPhysique: dataFormResponse.LEffortPhysique,
+                    LEffortMental: dataFormResponse.LEffortMental,
+                    SatisfactionEtEvolutionDeCarriere: dataFormResponse.SatisfactionEtEvolutionDeCarriere,
+                }
+                await createAnswers(Answersdata);
+            }
+        }
+        apiCalls();
     }, []);
 
     return (
