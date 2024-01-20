@@ -32,7 +32,6 @@ async function getTasks() {
     try {
         await fs.access(filePath);
     } catch (error) {
-        console.log("File does not exist, creating it...");
         await seeder();
     }
 
