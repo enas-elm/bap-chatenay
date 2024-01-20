@@ -3,8 +3,11 @@ import { db } from '@/db/index';
 
 export const POST = async (req: Request) => {
     const data = await req.json();
+
     try {
-        const { heuresSupplementaires, heuresTravailSemaine, horairesIrreguliers, moyenDeTransport, tempsTrajet, formResponseId } = data.HorairesDeTravail;
+        const { formResponseId } = data;
+
+        const { heuresSupplementaires, heuresTravailSemaine, horairesIrreguliers, moyenDeTransport, tempsTrajet } = data.HorairesDeTravail;
         const horairesDeTravail = await db.horairesDeTravail.create({
             data: {
                 heuresSupplementaires: heuresSupplementaires,
@@ -16,17 +19,17 @@ export const POST = async (req: Request) => {
             },
         });
 
-        const { fatigueMentaleOuStress, forteConcentrationRequise, impactNegatifSurViePersonnelle, formResponseId: formResponseId2 } = data.EffortMental;
+        const { fatigueMentaleOuStress, forteConcentrationRequise, impactNegatifSurViePersonnelle } = data.EffortMental;
         const effortMental = await db.effortMental.create({
             data: {
                 fatigueMentaleOuStress: fatigueMentaleOuStress,
                 forteConcentrationRequise: forteConcentrationRequise,
                 impactNegatifSurViePersonnelle: impactNegatifSurViePersonnelle,
-                formResponseId: formResponseId2,
+                formResponseId: formResponseId,
             },
         });
 
-        const { deplacementsFrequents, expositionRisquesPhysiques, positionStatique, problemesPhysiquesLiesAuTravail, travailRepetitif, formResponseId: formResponseId3 } = data.EffortPhysique;
+        const { deplacementsFrequents, expositionRisquesPhysiques, positionStatique, problemesPhysiquesLiesAuTravail, travailRepetitif } = data.EffortPhysique;
         const effortPhysique = await db.effortPhysique.create({
             data: {
                 deplacementsFrequents: deplacementsFrequents,
@@ -34,33 +37,44 @@ export const POST = async (req: Request) => {
                 positionStatique: positionStatique,
                 problemesPhysiquesLiesAuTravail: problemesPhysiquesLiesAuTravail,
                 travailRepetitif: travailRepetitif,
-                formResponseId: formResponseId3,
+                formResponseId: formResponseId,
             },
         });
 
-        const { espaceDeTravailInadapte, expositionProduitsToxiques, expositionVibrations, formResponseId: formResponseId4 } = data.Environnement;
+        const { espaceDeTravailInadapte, expositionProduitsToxiques, expositionVibrations } = data.Environnement;
         const environnement = await db.environnement.create({
             data: {
                 espaceDeTravailInadapte: espaceDeTravailInadapte,
                 expositionProduitsToxiques: expositionProduitsToxiques,
                 expositionVibrations: expositionVibrations,
-                formResponseId: formResponseId4,
+                formResponseId: formResponseId,
             },
         });
 
-        const { motivationPourTachesQuotidiennes, optionsReconversion, possibiliteEvolutionCarriere, satisfactionTravail, formResponseId: formResponseId5 } = data.SatisfactionEtEvolutionDeCarriere;
+        const { motivationPourTachesQuotidiennes, optionsReconversion, possibiliteEvolutionCarriere, satisfactionTravail } = data.SatisfactionEtEvolutionDeCarriere;
         const satisfactionEtEvolutionDeCarriere = await db.satisfactionEtEvolutionDeCarriere.create({
             data: {
                 motivationPourTachesQuotidiennes: motivationPourTachesQuotidiennes,
                 optionsReconversion: optionsReconversion,
                 possibiliteEvolutionCarriere: possibiliteEvolutionCarriere,
                 satisfactionTravail: satisfactionTravail,
-                formResponseId: formResponseId5,
+                formResponseId: formResponseId,
             },
         });
 
-        return NextResponse.json({ horairesDeTravail, effortMental, effortPhysique, environnement, satisfactionEtEvolutionDeCarriere });
+        return NextResponse.json({
+            status: 200,
+            message: 'Answers created',
+            body: {
+                horairesDeTravail,
+                effortMental,
+                effortPhysique,
+                environnement,
+                satisfactionEtEvolutionDeCarriere,
+            }
+        });
     } catch (error) {
         return NextResponse.json(error);
     }
+
 }
