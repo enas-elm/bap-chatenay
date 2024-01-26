@@ -96,7 +96,6 @@ export const createAnswers = async (data: any) => {
         }
 
         const dataResponse = await response.json();
-        console.log('dataResponse', dataResponse);
         return {
             status: 'success',
             message: 'Answers created',
@@ -112,9 +111,80 @@ export const createAnswers = async (data: any) => {
     }
 }
 
+export const getAnswers = async (id: string) => {
+    try {
+        const response = await fetch(`api/GET/answers/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+        const data = await response.json();
+        return {
+            status: data.status,
+            message: data.message,
+            body: data.body
+        }
+    } catch (error) {
+        return {
+            status: 500,
+            message: 'Internal server error (checkIfUserExists)',
+            error: error
+        }
+    }
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                 FormReponse                                */
 /* -------------------------------------------------------------------------- */
+
+
+export const getFormResponse = async () => {
+    try {
+        const response = await fetch('api/GET/formResponse', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+        const data = await response.json();
+        return {
+            status: data.status,
+            message: data.message,
+            body: data.body
+        }
+    } catch (error) {
+        return {
+            status: 500,
+            message: 'Internal server error (checkIfUserExists)',
+            error: error
+        }
+    }
+}
+
+export const getSpecificFormResponse = async (id: string) => {
+    try {
+        const response = await fetch(`api/GET/formResponse/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+        const data = await response.json();
+        return {
+            status: data.status,
+            message: data.message,
+            body: data.body
+        }
+    } catch (error) {
+        return {
+            status: 500,
+            message: 'Internal server error (checkIfUserExists)',
+            error: error
+        }
+    }
+}
+
 
 export const associateResponseToUser = async (data: object) => {
     try {
