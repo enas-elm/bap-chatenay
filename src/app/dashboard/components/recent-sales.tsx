@@ -155,15 +155,15 @@ export function RecentSales() {
                             Voir le formulaire
                         </Button>
                     </DialogTrigger>
-                    <DialogContent style={{ width: "100%", maxWidth: "none" }}>
+                    <DialogContent style={{ width: "75%", maxWidth: "none" }}>
                         <DialogHeader>
                             <DialogTitle>Consulter le dernier formulaire de {`${prenom} ${nom}`}</DialogTitle>
                             <DialogDescription>
                                 Vous retrouverez tout les éléments ci-dessous :
                             </DialogDescription>
                         </DialogHeader>
-                        <div className="w-full flex flex-col gap-y-10">
-                            <div>
+                        <div className="flex flex-col gap-y-6">
+                            <>
                                 <p className="pb-3">Effor Mentale</p>
                                 <DataTable
                                     columns={EffortMentalcolumns}
@@ -175,9 +175,9 @@ export function RecentSales() {
                                             impactNegatifSurViePersonnelle: item.impactNegatifSurViePersonnelle === "true" ? "Oui" : "Non",
                                         }))}
                                 />
-                            </div>
-
-                            <div>
+                            </>
+                            ª
+                            <>
                                 <p className="pb-3">Effort Physique</p>
                                 <DataTable columns={EffortPhysiquecolumns} data={EffortPhysiqueTasks.map(item => (
                                     {
@@ -188,9 +188,9 @@ export function RecentSales() {
                                         problemesPhysiquesLiesAuTravail: item.problemesPhysiquesLiesAuTravail === "true" ? "Oui" : "Non",
                                         travailRepetitif: item.travailRepetitif === "true" ? "Oui" : "Non",
                                     }))} />
-                            </div>
+                            </>
 
-                            <div>
+                            <>
                                 <p className="pb-3">Environnement</p>
                                 <DataTable columns={Environnementcolumns} data={EnvironnementTasks.map(item => (
                                     {
@@ -199,9 +199,9 @@ export function RecentSales() {
                                         expositionProduitsToxiques: item.expositionProduitsToxiques === "true" ? "Oui" : "Non",
                                         expositionVibrations: item.expositionVibrations === "true" ? "Oui" : "Non",
                                     }))} />
-                            </div>
+                            </>
 
-                            <div>
+                            <>
                                 <p className="pb-3">Horaires de travail</p>
                                 <DataTable columns={HorairesDeTravailcolumns} data={HorairesDeTravailTasks.map(item => (
                                     {
@@ -212,9 +212,9 @@ export function RecentSales() {
                                         moyenDeTransport: item.moyenDeTransport,
                                         tempsTrajet: item.tempsTrajet,
                                     }))} />
-                            </div>
+                            </>
 
-                            <div>
+                            <>
                                 <p className="pb-3">Satisfaction</p>
                                 <DataTable columns={Satisfactioncolumns} data={SatisfactionTasks.map(item => (
                                     {
@@ -224,7 +224,7 @@ export function RecentSales() {
                                         possibiliteEvolutionCarriere: item.possibiliteEvolutionCarriere === "true" ? "Oui" : "Non",
                                         satisfactionTravail: item.satisfactionTravail === "true" ? "Oui" : "Non",
                                     }))} />
-                            </div>
+                            </>
                         </div>
                     </DialogContent>
                 </Dialog>
