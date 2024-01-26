@@ -43,6 +43,8 @@ async function getTasks() {
 }
 
 const Dashboard = async () => {
+    const tasks = await getTasks()
+
     return (
         <>
             <Navbar />
@@ -62,7 +64,7 @@ const Dashboard = async () => {
                                 <TabsTrigger value="analytics" disabled>
                                     Analytics
                                 </TabsTrigger>
-                                <TabsTrigger value="reports" disabled>
+                                <TabsTrigger value="reports">
                                     All Reports
                                 </TabsTrigger>
                             </TabsList>
@@ -192,7 +194,7 @@ const Dashboard = async () => {
                                     </Card>
                                 </div>
                             </TabsContent>
-                            {/* <TabsContent value="reports" className="space-y-4">
+                            <TabsContent value="reports" className="space-y-4">
                                 <div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
                                     <div className="flex items-center justify-between space-y-2">
                                         <div>
@@ -204,7 +206,7 @@ const Dashboard = async () => {
                                     </div>
                                     <DataTable data={tasks} columns={columns} />
                                 </div>
-                            </TabsContent> */}
+                            </TabsContent>
                         </Tabs>
                     </div>
                 </div>
