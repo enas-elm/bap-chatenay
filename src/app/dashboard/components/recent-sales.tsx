@@ -113,10 +113,10 @@ export function RecentSales() {
             : [
                 {
                     heuresSupplementaires: "true",
-                    heuresTravailSemaine: "true",
+                    heuresTravailSemaine: "35h",
                     horairesIrreguliers: "true",
                     moyenDeTransport: "true",
-                    tempsTrajet: "true",
+                    tempsTrajet: "2h",
                 },
             ];
 
@@ -131,7 +131,7 @@ export function RecentSales() {
             : [
                 {
                     motivationPourTachesQuotidiennes: "true",
-                    optionsReconversion: "true",
+                    optionsReconversion: "",
                     possibiliteEvolutionCarriere: "true",
                     satisfactionTravail: "true",
                 },
@@ -192,6 +192,7 @@ export function RecentSales() {
 
                             <>
                                 <p className="pb-3">Environnement</p>
+                                {/* @ts-ignore */}
                                 <DataTable columns={Environnementcolumns} data={EnvironnementTasks.map(item => (
                                     {
                                         ...item,
@@ -203,6 +204,7 @@ export function RecentSales() {
 
                             <>
                                 <p className="pb-3">Horaires de travail</p>
+                                {/* @ts-ignore */}
                                 <DataTable columns={HorairesDeTravailcolumns} data={HorairesDeTravailTasks.map(item => (
                                     {
                                         ...item,
@@ -216,6 +218,7 @@ export function RecentSales() {
 
                             <>
                                 <p className="pb-3">Satisfaction</p>
+                                {/* @ts-ignore */}
                                 <DataTable columns={Satisfactioncolumns} data={SatisfactionTasks.map(item => (
                                     {
                                         ...item,
