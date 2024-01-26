@@ -11,38 +11,38 @@ export type InformationPersonnelles = {
 };
 
 export type HorairesDeTravail = {
-    moyenDeTransport?: string | undefined
-    tempsTrajet?: string | undefined
-    horairesIrreguliers?: string | undefined
-    heuresSupplementaires?: string | undefined
-    heuresTravailSemaine?: string | undefined
+    moyenDeTransport?: string
+    tempsTrajet?: string
+    horairesIrreguliers?: string
+    heuresSupplementaires?: string
+    heuresTravailSemaine?: string
 };
 
 export type LEnvironnement = {
-    espaceDeTravailInadapte: string | undefined
-    expositionProduitsToxiques: string | undefined
-    expositionVibrations: string | undefined
+    espaceDeTravailInadapte: string
+    expositionProduitsToxiques: string
+    expositionVibrations: string
 };
 
 export type LEffortPhysique = {
-    positionStatique: string | undefined
-    expositionRisquesPhysiques: string | undefined
-    deplacementsFrequents: string | undefined
-    travailRepetitif: string | undefined
-    problemesPhysiquesLiesAuTravail: string | undefined
+    positionStatique: string
+    expositionRisquesPhysiques: string
+    deplacementsFrequents: string
+    travailRepetitif: string
+    problemesPhysiquesLiesAuTravail: string
 };
 
 export type LEffortMental = {
-    forteConcentrationRequise: string | undefined
-    fatigueMentaleOuStress: string | undefined
-    impactNegatifSurViePersonnelle: string | undefined
+    forteConcentrationRequise: string
+    fatigueMentaleOuStress: string
+    impactNegatifSurViePersonnelle: string
 };
 
 export type SatisfactionEtEvolutionDeCarriere = {
-    satisfactionTravail: string | undefined
-    motivationPourTachesQuotidiennes: string | undefined
-    possibiliteEvolutionCarriere: string | undefined
-    optionsReconversion: string | undefined
+    satisfactionTravail: string
+    motivationPourTachesQuotidiennes: string
+    possibiliteEvolutionCarriere: string
+    optionsReconversion: string
 };
 
 export type Resultat = {
