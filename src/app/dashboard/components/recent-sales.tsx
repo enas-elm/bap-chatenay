@@ -18,17 +18,12 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
-
-
+import { DataTable } from './Modal-data-table'
+import { EffortMentalcolumns } from './EffortMentalcolumns'
+import { EffortPhysiquecolumns } from './EffortPhysiquecolumns'
+import { Environnementcolumns } from './Environnementcolumns'
+import { HorairesDeTravailcolumns } from './HorairesDeTravailcolumns'
+import { Satisfactioncolumns } from './Satisfactioncolumns'
 
 export function RecentSales() {
   const [latestResponses, setLatestResponses] = useState([]);
@@ -53,43 +48,53 @@ export function RecentSales() {
 
   const renderResponseItem = (response: any) => {
     const { email, nom, prenom } = response;
+    console.log(response);
     const initials = `${prenom.charAt(0)}${nom.charAt(0)}`;
 
-    const renderAnswers = (answers: any) => {
-      // Création d'un tableau de clés et de valeurs à partir de l'objet answers
-      const answerEntries = Object.entries(answers);
+    const EffortMentalTasks = [
+      {
+        fatigueMentaleOuStress: "true",
+        forteConcentrationRequise: "true",
+        impactNegatifSurViePersonnelle: "true",
+      },
+    ]
 
-      return (
-        <>
+    const EffortPhysiqueTasks = [
+      {
+        deplacementsFrequents: "true",
+        expositionRisquesPhysiques: "true",
+        positionStatique: "true",
+        problemesPhysiquesLiesAuTravail: "true",
+        travailRepetitif: "true",
+      },
+    ]
 
-          <Table>
-            <TableHead>
-              <TableRow className="flex">
-                {answerEntries.map(([key, _]) => (
-                  <TableHeader className="w-[100px]" key={key}>{key}</TableHeader>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              <TableRow>
-                {answerEntries.map(([_, value], index) => {
-                  // Supposons que chaque catégorie contient un tableau, prenez le premier élément
-                  const firstItem = value[0];
-                  return (
-                    <TableCell key={index}>
-                      {/* Affichez les détails souhaités de chaque première réponse */}
-                      {firstItem && Object.values(firstItem).join(", ")}
-                    </TableCell>
-                  );
-                })}
-              </TableRow>
-            </TableBody>
-          </Table>
-        </>
-      );
-    };
+    const EnvironnementTasks = [
+      {
+        espaceDeTravailInadapte: "true",
+        expositionProduitsToxiques: "true",
+        expositionVibrations: "true",
+      },
+    ]
 
+    const HorairesDeTravailTasks = [
+      {
+        heuresSupplementaires: "true",
+        heuresTravailSemaine: "35h",
+        horairesIrreguliers: "true",
+        moyenDeTransport: "true",
+        tempsTrajet: "2h",
+      },
+    ]
 
+    const SatisfactionTasks = [
+      {
+        motivationPourTachesQuotidiennes: "true",
+        optionsReconversion: "true",
+        possibiliteEvolutionCarriere: "true",
+        satisfactionTravail: "true",
+      },
+    ]
 
     return (
       <div className="flex items-center" key={response.id}>
@@ -110,15 +115,46 @@ export function RecentSales() {
               }
             }>Voir le formulaire</Button>
           </DialogTrigger>
-          <DialogContent className="">
+          <DialogContent style={{
+            width: "100%",
+            maxWidth: "none",
+          }}>
             <DialogHeader>
-              <DialogTitle>Consultation rapide des response</DialogTitle>
+              <DialogTitle>Consulter le dernier formulaire de {`${prenom} ${nom}`}</DialogTitle>
               <DialogDescription>
-                Vous retrouverez tout les element ici
+                Vous retrouverez tout les element ci-dessous :
               </DialogDescription>
             </DialogHeader>
-            <div className="w-full">
-              {renderAnswers(answers)}
+            <div className="w-full flex flex-col gap-y-10">
+              <div>
+                <p className="pb-3">Horraire de travail</p>
+                {/* @ts-ignore */}
+                <DataTable columns={HorairesDeTravailcolumns} data={HorairesDeTravailTasks} />
+              </div>
+
+              <div>
+                <p className="pb-3">Effort Physique</p>
+                <DataTable columns={EffortPhysiquecolumns} data={EffortPhysiqueTasks} />
+              </div>
+
+              <div>
+                <p className="pb-3">Satisfaction</p>
+                {/* @ts-ignore */}
+                <DataTable columns={Satisfactioncolumns} data={SatisfactionTasks} />
+              </div>
+
+              <div>
+                <p className="pb-3">Effort Mental</p>
+                <DataTable columns={EffortMentalcolumns} data={EffortMentalTasks} />
+              </div>
+
+              <div>
+                <p className="pb-3">Environement</p>
+                {/* @ts-ignore */}
+                <DataTable columns={Environnementcolumns} data={EnvironnementTasks} />
+              </div>
+
+
             </div>
           </DialogContent>
         </Dialog>
