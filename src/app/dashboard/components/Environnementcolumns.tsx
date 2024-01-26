@@ -8,7 +8,7 @@ export const Environnementcolumns: ColumnDef<EffortMentalSchema>[] = [
   {
     accessorKey: "espaceDeTravailInadapte",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="espaceDeTravailInadapte" />
+      <DataTableColumnHeader column={column} title="Espace De Travail Inadapte" />
     ),
     cell: ({ row }) => <div className="w-[80px]">{row.getValue("espaceDeTravailInadapte")}</div>,
     enableSorting: false,
@@ -17,7 +17,7 @@ export const Environnementcolumns: ColumnDef<EffortMentalSchema>[] = [
   {
     accessorKey: "expositionProduitsToxiques",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="expositionProduitsToxiques" />
+      <DataTableColumnHeader column={column} title="Exposition Produits Toxiques" />
     ),
     cell: ({ row }) => <div className="w-[80px]">{row.getValue("expositionProduitsToxiques")}</div>,
     enableSorting: false,
@@ -26,7 +26,7 @@ export const Environnementcolumns: ColumnDef<EffortMentalSchema>[] = [
   {
     accessorKey: "expositionVibrations",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="expositionVibrations" />
+      <DataTableColumnHeader column={column} title="Exposition Vibrations" />
     ),
     cell: ({ row }) => <div className="w-[80px]">{row.getValue("expositionVibrations")}</div>,
     enableSorting: false,

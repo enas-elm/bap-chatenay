@@ -8,7 +8,7 @@ export const HorairesDeTravailcolumns: ColumnDef<EffortMentalSchema>[] = [
   {
     accessorKey: "heuresSupplementaires",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="heuresSupplementaires" />
+      <DataTableColumnHeader column={column} title="Heures Supplementaires" />
     ),
     cell: ({ row }) => <div className="w-[80px]">{row.getValue("heuresSupplementaires")}</div>,
     enableSorting: false,
@@ -17,7 +17,7 @@ export const HorairesDeTravailcolumns: ColumnDef<EffortMentalSchema>[] = [
   {
     accessorKey: "heuresTravailSemaine",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="heuresTravailSemaine" />
+      <DataTableColumnHeader column={column} title="Heures Travail Semaine" />
     ),
     cell: ({ row }) => <div className="w-[80px]">{row.getValue("heuresTravailSemaine")}</div>,
     enableSorting: false,
@@ -26,7 +26,7 @@ export const HorairesDeTravailcolumns: ColumnDef<EffortMentalSchema>[] = [
   {
     accessorKey: "horairesIrreguliers",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="horairesIrreguliers" />
+      <DataTableColumnHeader column={column} title="Horaires Irreguliers" />
     ),
     cell: ({ row }) => <div className="w-[80px]">{row.getValue("horairesIrreguliers")}</div>,
     enableSorting: false,
@@ -35,7 +35,7 @@ export const HorairesDeTravailcolumns: ColumnDef<EffortMentalSchema>[] = [
   {
     accessorKey: "moyenDeTransport",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="moyenDeTransport" />
+      <DataTableColumnHeader column={column} title="Moyen De Transport" />
     ),
     cell: ({ row }) => <div className="w-[80px]">{row.getValue("moyenDeTransport")}</div>,
     enableSorting: false,
@@ -44,7 +44,7 @@ export const HorairesDeTravailcolumns: ColumnDef<EffortMentalSchema>[] = [
   {
     accessorKey: "tempsTrajet",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="tempsTrajet" />
+      <DataTableColumnHeader column={column} title="Temps Trajet" />
     ),
     cell: ({ row }) => <div className="w-[80px]">{row.getValue("tempsTrajet")}</div>,
     enableSorting: false,

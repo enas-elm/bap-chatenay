@@ -8,7 +8,7 @@ export const EffortMentalcolumns: ColumnDef<EffortMentalSchema>[] = [
   {
     accessorKey: "fatigueMentaleOuStress",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="fatigueMentaleOuStress" />
+      <DataTableColumnHeader column={column} title="Fatigue Mentale Ou Stress" />
     ),
     cell: ({ row }) => <div className="w-[80px]">{row.getValue("fatigueMentaleOuStress")}</div>,
     enableSorting: false,
@@ -17,7 +17,7 @@ export const EffortMentalcolumns: ColumnDef<EffortMentalSchema>[] = [
   {
     accessorKey: "forteConcentrationRequise",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="forteConcentrationRequise" />
+      <DataTableColumnHeader column={column} title="Forte Concentration Requise" />
     ),
     cell: ({ row }) => <div className="w-[80px]">{row.getValue("forteConcentrationRequise")}</div>,
     enableSorting: false,
@@ -26,7 +26,7 @@ export const EffortMentalcolumns: ColumnDef<EffortMentalSchema>[] = [
   {
     accessorKey: "impactNegatifSurViePersonnelle",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="impactNegatifSurViePersonnelle" />
+      <DataTableColumnHeader column={column} title="Impact Negatif Sur Vie Personnelle" />
     ),
     cell: ({ row }) => <div className="w-[80px]">{row.getValue("impactNegatifSurViePersonnelle")}</div>,
     enableSorting: false,

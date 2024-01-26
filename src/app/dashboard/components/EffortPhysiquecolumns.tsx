@@ -8,7 +8,7 @@ export const EffortPhysiquecolumns: ColumnDef<EffortPhysiqueSchema>[] = [
   {
     accessorKey: "deplacementsFrequents",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="deplacementsFrequents" />
+      <DataTableColumnHeader column={column} title="Deplacements Frequents" />
     ),
     cell: ({ row }) => <div className="w-[80px]">{row.getValue("deplacementsFrequents")}</div>,
     enableSorting: false,
@@ -17,7 +17,7 @@ export const EffortPhysiquecolumns: ColumnDef<EffortPhysiqueSchema>[] = [
   {
     accessorKey: "expositionRisquesPhysiques",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="expositionRisquesPhysiques" />
+      <DataTableColumnHeader column={column} title="Exposition Risques Physiques" />
     ),
     cell: ({ row }) => <div className="w-[80px]">{row.getValue("expositionRisquesPhysiques")}</div>,
     enableSorting: false,
@@ -26,7 +26,7 @@ export const EffortPhysiquecolumns: ColumnDef<EffortPhysiqueSchema>[] = [
   {
     accessorKey: "positionStatique",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="positionStatique" />
+      <DataTableColumnHeader column={column} title="Position Statique" />
     ),
     cell: ({ row }) => <div className="w-[80px]">{row.getValue("positionStatique")}</div>,
     enableSorting: false,
@@ -35,7 +35,7 @@ export const EffortPhysiquecolumns: ColumnDef<EffortPhysiqueSchema>[] = [
   {
     accessorKey: "problemesPhysiquesLiesAuTravail",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="problemesPhysiquesLiesAuTravail" />
+      <DataTableColumnHeader column={column} title="Problemes Physiques Lies Au Travail" />
     ),
     cell: ({ row }) => <div className="w-[80px]">{row.getValue("problemesPhysiquesLiesAuTravail")}</div>,
     enableSorting: false,
@@ -44,7 +44,7 @@ export const EffortPhysiquecolumns: ColumnDef<EffortPhysiqueSchema>[] = [
   {
     accessorKey: "travailRepetitif",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="travailRepetitif" />
+      <DataTableColumnHeader column={column} title="Travail Repetitif" />
     ),
     cell: ({ row }) => <div className="w-[80px]">{row.getValue("travailRepetitif")}</div>,
     enableSorting: false,
