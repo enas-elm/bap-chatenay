@@ -11,11 +11,13 @@ type ResultProps = {
 
 export const Resultat = ({ dataFormResponse }: ResultProps) => {
     const [showResult1, setShowResult1] = useState(false);
+    const [priorite, setPriorite] = useState('');
 
     useEffect(() => {
         const score = calculerScoreUsure(dataFormResponse);
         const seuilUsure = 15;
-        setShowResult1(score >= seuilUsure);
+        setShowResult1(score.score >= seuilUsure);
+        setPriorite(score.priorite);
 
         const apiCalls = async () => {
             const email = dataFormResponse?.InformationPersonnelles?.email;
@@ -79,7 +81,7 @@ function calculerScoreUsure(reponses: any) {
     score += calculerScoreEffortPhysique(reponses.LEffortPhysique);
     score += calculerScoreEffortMental(reponses.LEffortMental);
     score += calculerScoreSatisfactionEvolution(reponses.SatisfactionEtEvolutionDeCarriere);
-    return score;
+    return { score, priorite: determinerNiveauPriorite(score) };
 }
 
 function calculerScoreInfoPersonnelles(info: { hasDisabilityOrIllness: string; disabilityOrIllnessDetails: any; }) {
@@ -91,6 +93,16 @@ function calculerScoreInfoPersonnelles(info: { hasDisabilityOrIllness: string; d
         score += calculerScoreMaladie(maladie);
     }
     return score;
+}
+
+function determinerNiveauPriorite(score: number) {
+    if (score <= 10) {
+        return 'low';
+    } else if (score <= 20) {
+        return 'medium';
+    } else {
+        return 'high';
+    }
 }
 
 function calculerScoreHorairesTravail(horaires: { tempsTrajet: String; horairesIrreguliers: string; heuresSupplementaires: string; heuresTravailSemaine: String; }) {
