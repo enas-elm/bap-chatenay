@@ -2,7 +2,7 @@
 import { useState, useEffect, use } from "react";
 import { Result1 } from "./Questions/Result1";
 import { Result2 } from "./Questions/Result2";
-import * as api from "./apiRequest/formRequest";
+import * as api from "../lib/apiRequest/formRequest";
 import { ResponseType } from "@/types/Form";
 import { calculerScoreUsure } from "@/lib/scoreCalculators";
 
