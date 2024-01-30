@@ -10,7 +10,7 @@ import { EffortPhysiquecolumns } from './EffortPhysiquecolumns';
 import { Environnementcolumns } from './Environnementcolumns';
 import { HorairesDeTravailcolumns } from './HorairesDeTravailcolumns';
 import { Satisfactioncolumns } from './Satisfactioncolumns';
-import { getAnswers, getFormResponse, getSpecificFormResponse } from '@/components/apiRequest/formRequest';
+import { getAnswers, getFormResponse, getSpecificFormResponse, getAllUsers } from '@/components/apiRequest/formRequest';
 import { HorairesDeTravail, LEnvironnement, LEffortPhysique, LEffortMental, SatisfactionEtEvolutionDeCarriere } from '@/types/Form';
 
 interface ResponseType {
@@ -37,7 +37,7 @@ export function RecentSales() {
     }, []);
 
     const fetchLatestResponses = useCallback(async () => {
-        const responses = await getFormResponse();
+        const responses = await getAllUsers();
         setLatestResponses(responses.body.slice(-5).reverse());
     }, []);
 
@@ -50,6 +50,8 @@ export function RecentSales() {
 
     const renderResponseItem = useCallback((response: ResponseType) => {
         const { email, nom, prenom } = response;
+
+        console.log(prenom)
         const initials = `${prenom.charAt(0)}${nom.charAt(0)}`;
 
         const EffortMentalTasks = answers?.effortMental?.length
