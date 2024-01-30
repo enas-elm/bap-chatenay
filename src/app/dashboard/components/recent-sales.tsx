@@ -160,7 +160,8 @@ export function RecentSales() {
                         <DialogHeader>
                             <DialogTitle>Consulter le dernier formulaire de {`${prenom} ${nom}`}</DialogTitle>
                             <DialogDescription>
-                                Vous retrouverez tout les éléments ci-dessous :
+                                {/* Cree un text qui indique a l'utilisateur que la prioriter de cette utilisateur est : et que toute les information du formulaire sont ci dessous  */}
+                                Vous pouvez consulter les response de {`${prenom} ${nom}`} ci dessous :
                             </DialogDescription>
                         </DialogHeader>
                         <div className="flex flex-col gap-y-6">
