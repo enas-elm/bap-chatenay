@@ -19,7 +19,7 @@ export const GET = async (
             where: { email: userEmail },
         });
 
-        if (!user) {
+        if (!user || user.length === 0) {
             return NextResponse.json({
                 status: 404,
                 message: 'User not found',

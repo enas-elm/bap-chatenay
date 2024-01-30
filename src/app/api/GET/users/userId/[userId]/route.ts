@@ -5,18 +5,29 @@ export const GET = async (
     req: Request,
     { params }: { params: { userId: string } }
 ) => {
-    const userId = params.userId
+    const userIdOrEmail = params.userId;
 
-    if (!userId) {
+    if (!userIdOrEmail) {
         return NextResponse.json({
             status: 400,
-            message: 'Missing user id',
+            message: 'Missing user identifier',
         });
     }
+
     try {
-        const user = await db.user.findMany({
-            where: { id: parseInt(userId) },
-        });
+        let user;
+        if (isNaN(Number(userIdOrEmail))) {
+            // userIdOrEmail est un email
+            user = await db.user.findUnique({
+                where: { email: userIdOrEmail },
+            });
+        } else {
+            // userIdOrEmail est un userId
+            const userId = parseInt(userIdOrEmail);
+            user = await db.user.findUnique({
+                where: { id: userId },
+            });
+        }
 
         if (!user) {
             return NextResponse.json({

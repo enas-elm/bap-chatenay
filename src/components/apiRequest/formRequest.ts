@@ -1,4 +1,5 @@
-import { ResponseType } from '@/types/Form';
+import { LEffortMental, LEffortPhysique, LEnvironnement, ResponseType, SatisfactionEtEvolutionDeCarriere } from '@/types/Form';
+import { HorairesDeTravail } from '@/types/Form';
 
 /* -------------------------------------------------------------------------- */
 /*                                    USER                                    */
@@ -29,7 +30,7 @@ export const getUsers = async () => {
 
 export const getUserById = async (userId: string | undefined) => {
     try {
-        const response = await fetch(`api/GET/user/${userId}`, {
+        const response = await fetch(`api/GET/users/userId/${userId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -52,7 +53,7 @@ export const getUserById = async (userId: string | undefined) => {
 
 export const getUserByEmail = async (email: string | undefined) => {
     try {
-        const response = await fetch(`api/GET/user/${email}`, {
+        const response = await fetch(`api/GET/users/userEmail/${email}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -75,18 +76,17 @@ export const getUserByEmail = async (email: string | undefined) => {
 
 export const checkIfUserExistsByEmail = async (email: string | undefined) => {
     try {
-        const response = await fetch(`api/GET/user/${email}`, {
+        const response = await fetch(`api/GET/users/userEmail/${email}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             },
         });
         const data = await response.json();
-        if (data.body.length === 0) {
-            return false;
-        } else {
+        if (data.message === 'User found') {
             return true;
         }
+        return false;
     } catch (error) {
         return {
             status: 500,
@@ -96,28 +96,18 @@ export const checkIfUserExistsByEmail = async (email: string | undefined) => {
     }
 }
 
-type createUserPayload = {
-    InformationPersonnelles: {
-        email: string;
-        nom: string;
-        prenom: string;
-        phone: string;
-        birthdate: string;
-        job: string;
-    }
-}
-
-export const createUser = async (data: createUserPayload) => {
+export const createUser = async (data: any) => {
     try {
         const payload = {
-            email: data.InformationPersonnelles.email,
-            nom: data.InformationPersonnelles.nom,
-            prenom: data.InformationPersonnelles.prenom,
-            phone: data.InformationPersonnelles.phone,
-            birthdate: data.InformationPersonnelles.birthdate,
-            job: data.InformationPersonnelles.job,
+            InformationPersonnelles: {
+                email: data.InformationPersonnelles.email,
+                nom: data.InformationPersonnelles.nom,
+                prenom: data.InformationPersonnelles.prenom,
+                phone: data.InformationPersonnelles.phone,
+                birthdate: data.InformationPersonnelles.birthdate,
+                job: data.InformationPersonnelles.job,
+            }
         }
-
         const response = await fetch('api/POST/createUser', {
             method: 'POST',
             headers: {
@@ -228,17 +218,7 @@ export const associateResponseToUser = async (data: DataPayload) => {
 /*                                   Answers                                  */
 /* -------------------------------------------------------------------------- */
 
-
-type AnswersPayload = {
-    formResponseId: string;
-    HorairesDeTravail: ResponseType;
-    LEffortMental: ResponseType;
-    LEffortPhysique: ResponseType;
-    LEnvironnement: ResponseType;
-    SatisfactionEtEvolutionDeCarriere: ResponseType;
-}
-
-export const createAnswers = async (data: AnswersPayload) => {
+export const createAnswers = async (data: any) => {
     const payload = {
         formResponseId: data.formResponseId,
         HorairesDeTravail: data.HorairesDeTravail,
@@ -295,6 +275,43 @@ export const getAnswers = async (id: string) => {
         return {
             status: 500,
             message: 'Internal server error (checkIfUserExists)',
+            error: error
+        }
+    }
+}
+
+
+/* -------------------------------------------------------------------------- */
+/*                                  Priority                                  */
+/* -------------------------------------------------------------------------- */
+
+export const createPriority = async (data: any) => {
+    try {
+        const payload = {
+            formResponseId: data.formResponseId,
+            value: data.value,
+            label: data.label,
+        }
+
+        const response = await fetch('api/POST/createPriority', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+        const dataResponse = await response.json();
+        return {
+            status: 'success',
+            message: 'Answers created',
+            body: {
+                priority: dataResponse,
+            }
+        };
+    } catch (error) {
+        return {
+            status: 500,
+            message: 'Internal server error (createPriority)',
             error: error
         }
     }
