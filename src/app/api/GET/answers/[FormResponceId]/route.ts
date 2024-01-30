@@ -7,8 +7,6 @@ export const GET = async (
 ) => {
     const ResponseFormId = params.formResponceId
 
-    console.log(ResponseFormId)
-
     if (!ResponseFormId) {
         return NextResponse.json({
             status: 400,

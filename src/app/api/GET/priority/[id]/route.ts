@@ -21,7 +21,7 @@ export const GET = async (
             where: { id: parseInt(priotityId) },
         });
 
-        if (!ResponseForm) {
+        if (!ResponseForm || ResponseForm.length === 0) {
             return NextResponse.json({
                 status: 404,
                 message: 'ResponseForm not found',

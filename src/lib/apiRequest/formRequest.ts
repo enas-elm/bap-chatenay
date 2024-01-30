@@ -302,7 +302,6 @@ export const createAnswers = async (data: any) => {
 
 export const getAnswers = async (responceFormId: string) => {
     try {
-        console.log(typeof responceFormId)
         const response = await fetch(`api/GET/answers/${responceFormId}`, {
             method: 'GET',
             headers: {
@@ -356,6 +355,29 @@ export const createPriority = async (data: any) => {
         return {
             status: 500,
             message: 'Internal server error (createPriority)',
+            error: error
+        }
+    }
+}
+
+export const getPriorityByFormResponseId = async (formResponseId: string) => {
+    try {
+        const response = await fetch(`api/GET/priority/${formResponseId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+        const data = await response.json();
+        return {
+            status: data.status,
+            message: data.message,
+            body: data.body
+        }
+    } catch (error) {
+        return {
+            status: 500,
+            message: 'Internal server error (getPriorityByFormResponseId)',
             error: error
         }
     }
