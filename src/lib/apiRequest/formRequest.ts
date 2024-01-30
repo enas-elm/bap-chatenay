@@ -74,6 +74,49 @@ export const getUserByEmail = async (email: string | undefined) => {
     }
 }
 
+export const getLast5SubmittedForms = async () => {
+    try {
+        const response = await fetch('api/GET/formResponse', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+        const data = await response.json();
+        const users = data.body.sort((a: any, b: any) => {
+            return b.userId - a.userId;
+        }).filter((user: any, index: number, array: any) => {
+            return index === array.findIndex((t: any) => (
+                t.userId === user.userId
+            ))
+        }).slice(0, 5);
+
+        const usersInfo = users.map(async (user: any) => {
+            const userId = user.userId;
+            const userInfo = await getUserById(userId)
+            return {
+                id: userInfo.body.id,
+                email: userInfo.body.email,
+                nom: userInfo.body.nom,
+                prenom: userInfo.body.prenom,
+            }
+        })
+
+        const usersInfoResolved = await Promise.all(usersInfo);
+        return {
+            status: 'success',
+            message: 'Last 5 user who as submitted forms',
+            body: usersInfoResolved
+        }
+    } catch (error) {
+        return {
+            status: 500,
+            message: 'Internal server error (getLast5SubmittedForms)',
+            error: error
+        }
+    }
+}
+
 export const checkIfUserExistsByEmail = async (email: string | undefined) => {
     try {
         const response = await fetch(`api/GET/users/userEmail/${email}`, {
@@ -257,9 +300,10 @@ export const createAnswers = async (data: any) => {
     }
 }
 
-export const getAnswers = async (id: string) => {
+export const getAnswers = async (responceFormId: string) => {
     try {
-        const response = await fetch(`api/GET/answers/${id}`, {
+        console.log(typeof responceFormId)
+        const response = await fetch(`api/GET/answers/${responceFormId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'

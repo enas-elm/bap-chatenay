@@ -10,7 +10,7 @@ import { EffortPhysiquecolumns } from './EffortPhysiquecolumns';
 import { Environnementcolumns } from './Environnementcolumns';
 import { HorairesDeTravailcolumns } from './HorairesDeTravailcolumns';
 import { Satisfactioncolumns } from './Satisfactioncolumns';
-import { getAnswers, getFormResponse, getSpecificFormResponse, getAllUsers } from '@/components/apiRequest/formRequest';
+import * as api from "@/lib/apiRequest/formRequest";
 import { HorairesDeTravail, LEnvironnement, LEffortPhysique, LEffortMental, SatisfactionEtEvolutionDeCarriere } from '@/types/Form';
 
 interface ResponseType {
@@ -37,14 +37,15 @@ export function RecentSales() {
     }, []);
 
     const fetchLatestResponses = useCallback(async () => {
-        const responses = await getAllUsers();
-        setLatestResponses(responses.body.slice(-5).reverse());
+        const responses = await api.getLast5SubmittedForms();
+        //@ts-ignore
+        setLatestResponses(responses.body)
     }, []);
 
     const festAnswers = useCallback(async (id: number) => {
-        const responses = await getSpecificFormResponse(`${id}`);
+        const responses = await api.getFormResponseByUserId(`${id}`);
         const formResponceId = responses.body[0].id;
-        const fetchedAnswers = await getAnswers(`${formResponceId}`);
+        const fetchedAnswers = await api.getAnswers(`${formResponceId}`);
         setAnswers(fetchedAnswers.body);
     }, []);
 
@@ -116,7 +117,7 @@ export function RecentSales() {
                     heuresTravailSemaine: "35h",
                     horairesIrreguliers: "true",
                     moyenDeTransport: "true",
-                    tempsTrajet: "2h",
+                    tempsTrajet: "3h",
                 },
             ];
 
@@ -176,7 +177,6 @@ export function RecentSales() {
                                         }))}
                                 />
                             </>
-                            ª
                             <>
                                 <p className="pb-3">Effort Physique</p>
                                 <DataTable columns={EffortPhysiquecolumns} data={EffortPhysiqueTasks.map(item => (

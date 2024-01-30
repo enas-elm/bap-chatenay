@@ -3,9 +3,11 @@ import { db } from '@/db';
 
 export const GET = async (
     req: Request,
-    { params }: { params: { responceFormId: string } }
+    { params }: { params: { formResponceId: string } }
 ) => {
-    const ResponseFormId = params.responceFormId
+    const ResponseFormId = params.formResponceId
+
+    console.log(ResponseFormId)
 
     if (!ResponseFormId) {
         return NextResponse.json({
