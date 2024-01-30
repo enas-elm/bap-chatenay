@@ -50,8 +50,6 @@ export function RecentSales() {
 
     const renderResponseItem = useCallback((response: ResponseType) => {
         const { email, nom, prenom } = response;
-
-        console.log(prenom)
         const initials = `${prenom.charAt(0)}${nom.charAt(0)}`;
 
         const EffortMentalTasks = answers?.effortMental?.length
