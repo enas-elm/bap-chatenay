@@ -1,37 +1,34 @@
-// app/api/user/[userId].ts
 import { NextResponse } from 'next/server';
-import { NextRequest } from 'next/server';
 import { db } from '@/db';
 
 export const GET = async (
     req: Request,
-    { params }: { params: { id: number } }
+    { params }: { params: { userId: string } }
 ) => {
-    const priotityId = params.id
+    const userId = params.userId
 
-    if (!priotityId) {
+    if (!userId) {
         return NextResponse.json({
             status: 400,
-            message: 'Missing priotityId id',
+            message: 'Missing user id',
         });
     }
-
     try {
-        const ResponseForm = await db.priorities.findMany({
-            where: { id: parseInt(priotityId) },
+        const user = await db.user.findMany({
+            where: { id: parseInt(userId) },
         });
 
-        if (!ResponseForm) {
+        if (!user) {
             return NextResponse.json({
                 status: 404,
-                message: 'ResponseForm not found',
+                message: 'User not found',
             });
         }
 
         return NextResponse.json({
             status: 200,
-            message: 'ResponseForm found',
-            body: ResponseForm,
+            message: 'User found',
+            body: user,
         });
     } catch (error) {
         return NextResponse.json({

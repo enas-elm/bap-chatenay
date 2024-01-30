@@ -1,6 +1,4 @@
-// app/api/user/[userId].ts
 import { NextResponse } from 'next/server';
-import { NextRequest } from 'next/server';
 import { db } from '@/db';
 
 export const GET = async (

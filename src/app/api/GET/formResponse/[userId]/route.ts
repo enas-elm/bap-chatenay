@@ -1,24 +1,22 @@
-// app/api/user/[userId].ts
 import { NextResponse } from 'next/server';
-import { NextRequest } from 'next/server';
 import { db } from '@/db';
 
 export const GET = async (
     req: Request,
-    { params }: { params: { userEmail: string } }
+    { params }: { params: { userId: string } }
 ) => {
-    const userEmail = params.userEmail
+    const userFormResponse = params.userId
 
-    if (!userEmail) {
+    if (!userFormResponse) {
         return NextResponse.json({
             status: 400,
-            message: 'Missing user email',
+            message: 'Missing user id',
         });
     }
 
     try {
-        const user = await db.user.findUnique({
-            where: { email: userEmail },
+        const user = await db.formResponse.findMany({
+            where: { userId: parseInt(userFormResponse) },
         });
 
         if (!user) {
