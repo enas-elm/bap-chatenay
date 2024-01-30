@@ -122,7 +122,7 @@ model statuses {
 model priorities {
   id             Int          @id @default(autoincrement())
   formResponseId Int          @unique
-  value          String       @unique
+  value          String
   label          String
   formResponse   FormResponse @relation(fields: [formResponseId], references: [id])
   createdAt      DateTime     @default(now())
