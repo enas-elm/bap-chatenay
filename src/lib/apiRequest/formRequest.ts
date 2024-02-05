@@ -1,5 +1,6 @@
 import { LEffortMental, LEffortPhysique, LEnvironnement, ResponseType, SatisfactionEtEvolutionDeCarriere } from '@/types/Form';
 import { HorairesDeTravail } from '@/types/Form';
+import { format } from "date-fns";
 
 /* -------------------------------------------------------------------------- */
 /*                                    USER                                    */
@@ -383,3 +384,35 @@ export const getPriorityByFormResponseId = async (formResponseId: string) => {
     }
 }
 
+
+/* -------------------------------------------------------------------------- */
+/*                               DATE PICK RAGE                               */
+/* -------------------------------------------------------------------------- */
+
+export const getDatePickRange = async (date: any) => {
+    try {
+        const playload = {
+            startDate: format(date.from, "yyyy-MM-dd"),
+            endDate: format(date.to, "yyyy-MM-dd"),
+        };
+        const response = await fetch('api/POST/createCsvFileWithAllData', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(playload)
+        });
+        const data = await response.json();
+        return {
+            status: data.status,
+            message: data.message,
+            body: data.body
+        }
+    } catch (error) {
+        return {
+            status: 500,
+            message: 'Internal server error (getDatePickRange)',
+            error: error
+        }
+    }
+}
