@@ -1,8 +1,8 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { EffortMentalSchema } from "../data/schema"
-import { DataTableColumnHeader } from "./data-table-column-header"
+import { EffortMentalSchema } from "../../data/schema"
+import { DataTableColumnHeader } from "../data-tables/data-table-column-header"
 
 export const Environnementcolumns: ColumnDef<EffortMentalSchema>[] = [
   {

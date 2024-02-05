@@ -18,8 +18,8 @@ import {
   DropdownMenuTrigger,
 } from "@ui/dropdown-menu"
 
-import { labels } from "../data/data"
-import { taskSchema } from "../data/schema"
+import { labels } from "../../data/data"
+import { taskSchema } from "../../data/schema"
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
@@ -42,12 +42,12 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem>Voir l’élément</DropdownMenuItem>
-        <DropdownMenuItem>Ajouter au Favori</DropdownMenuItem>
-        <DropdownMenuItem>Contacter la personne</DropdownMenuItem>
+        <DropdownMenuItem>Édite</DropdownMenuItem>
+        <DropdownMenuItem>Send Email</DropdownMenuItem>
+        <DropdownMenuItem>Check Report</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuSub>
-          <DropdownMenuSubTrigger>Modifier le label</DropdownMenuSubTrigger>
+          <DropdownMenuSubTrigger>Change Label</DropdownMenuSubTrigger>
           <DropdownMenuSubContent>
             <DropdownMenuRadioGroup value={task.label}>
               {labels.map((label) => (
@@ -60,7 +60,7 @@ export function DataTableRowActions<TData>({
         </DropdownMenuSub>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          Supprimer
+          Delete
           <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>

@@ -19,8 +19,8 @@ import { promises as fs } from "fs"
 import path from "path"
 import { z } from "zod"
 
-import { columns } from "./components/columns"
-import { DataTable } from "./components/data-table"
+import { columns } from "./components/colums/columns"
+import { DataTable } from "./components/data-tables/data-table"
 import { taskSchema } from "./data/schema"
 import { seeder } from "./data/seed"
 import CalendarDate from "./components/CalendarDate"
@@ -59,12 +59,7 @@ const Dashboard = async () => {
                         <Tabs defaultValue="overview" className="space-y-4">
                             <TabsList>
                                 <TabsTrigger value="overview">Overview</TabsTrigger>
-                                <TabsTrigger value="analytics" disabled>
-                                    Analytics
-                                </TabsTrigger>
-                                <TabsTrigger value="reports">
-                                    All Reports
-                                </TabsTrigger>
+                                <TabsTrigger value="reports">All Reports</TabsTrigger>
                             </TabsList>
                             <TabsContent value="overview" className="space-y-4">
                                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
