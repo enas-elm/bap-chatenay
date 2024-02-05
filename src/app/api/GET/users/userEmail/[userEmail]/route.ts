@@ -1,6 +1,4 @@
-// app/api/user/[userId].ts
 import { NextResponse } from 'next/server';
-import { NextRequest } from 'next/server';
 import { db } from '@/db';
 
 export const GET = async (
@@ -17,11 +15,11 @@ export const GET = async (
     }
 
     try {
-        const user = await db.user.findUnique({
+        const user = await db.user.findMany({
             where: { email: userEmail },
         });
 
-        if (!user) {
+        if (!user || user.length === 0) {
             return NextResponse.json({
                 status: 404,
                 message: 'User not found',

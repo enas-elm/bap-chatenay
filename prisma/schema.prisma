@@ -19,6 +19,8 @@ model User {
   birthdate     String?
   job           String?
   formResponses FormResponse[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
 }
 
 model FormResponse {
@@ -30,6 +32,11 @@ model FormResponse {
   effortPhysique                    EffortPhysique?
   environnement                     Environnement?
   satisfactionEtEvolutionDeCarriere SatisfactionEtEvolutionDeCarriere?
+  labels                            labels?
+  status                            statuses?
+  priority                          priorities?
+  createdAt                         DateTime                           @default(now())
+  updatedAt                         DateTime                           @updatedAt
 }
 
 model HorairesDeTravail {
@@ -41,6 +48,8 @@ model HorairesDeTravail {
   tempsTrajet           String?
   formResponse          FormResponse @relation(fields: [formResponseId], references: [id])
   formResponseId        Int          @unique
+  createdAt             DateTime     @default(now())
+  updatedAt             DateTime     @updatedAt
 }
 
 model EffortMental {
@@ -50,6 +59,8 @@ model EffortMental {
   impactNegatifSurViePersonnelle String?
   formResponse                   FormResponse @relation(fields: [formResponseId], references: [id])
   formResponseId                 Int          @unique
+  createdAt                      DateTime     @default(now())
+  updatedAt                      DateTime     @updatedAt
 }
 
 model EffortPhysique {
@@ -61,6 +72,8 @@ model EffortPhysique {
   travailRepetitif                String?
   formResponse                    FormResponse @relation(fields: [formResponseId], references: [id])
   formResponseId                  Int          @unique
+  createdAt                       DateTime     @default(now())
+  updatedAt                       DateTime     @updatedAt
 }
 
 model Environnement {
@@ -70,6 +83,8 @@ model Environnement {
   expositionVibrations       String?
   formResponse               FormResponse @relation(fields: [formResponseId], references: [id])
   formResponseId             Int          @unique
+  createdAt                  DateTime     @default(now())
+  updatedAt                  DateTime     @updatedAt
 }
 
 model SatisfactionEtEvolutionDeCarriere {
@@ -80,4 +95,36 @@ model SatisfactionEtEvolutionDeCarriere {
   satisfactionTravail              String?
   formResponse                     FormResponse @relation(fields: [formResponseId], references: [id])
   formResponseId                   Int          @unique
+  createdAt                        DateTime     @default(now())
+  updatedAt                        DateTime     @updatedAt
+}
+
+model labels {
+  id             Int          @id @default(autoincrement())
+  formResponseId Int          @unique
+  value          String       @unique
+  label          String
+  formResponse   FormResponse @relation(fields: [formResponseId], references: [id])
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+}
+
+model statuses {
+  id             Int          @id @default(autoincrement())
+  formResponseId Int          @unique
+  value          String       @unique
+  label          String
+  formResponse   FormResponse @relation(fields: [formResponseId], references: [id])
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+}
+
+model priorities {
+  id             Int          @id @default(autoincrement())
+  formResponseId Int          @unique
+  value          String
+  label          String
+  formResponse   FormResponse @relation(fields: [formResponseId], references: [id])
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
 }

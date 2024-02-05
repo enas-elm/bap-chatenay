@@ -3,11 +3,11 @@ import { db } from '@/db/index';
 
 export const GET = async (req: Request) => {
     try {
-        const users = await db.user.findMany();
+        const priorities = await db.priorities.findMany();
         return NextResponse.json({
             status: 200,
             message: 'Success',
-            body: users
+            body: priorities
         });
     } catch (error) {
         return NextResponse.json({

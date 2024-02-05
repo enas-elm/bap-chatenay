@@ -21,6 +21,6 @@ export const seeder = () => {
 }
 
 // N'oubliez pas d'appeler la fonction seeder quelque part dans votre code.
-seeder();
+// seeder();
 
 

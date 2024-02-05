@@ -1,6 +1,4 @@
 import Navbar from "@/components/Navbar"
-import { CalendarDateRangePicker } from "./components/date-range-picker"
-import { Button } from "@ui/button"
 import {
     Card,
     CardContent,
@@ -25,6 +23,7 @@ import { columns } from "./components/columns"
 import { DataTable } from "./components/data-table"
 import { taskSchema } from "./data/schema"
 import { seeder } from "./data/seed"
+import CalendarDate from "./components/CalendarDate"
 
 async function getTasks() {
     const filePath = path.join(process.cwd(), "src/app/dashboard/data/tasks.json");
@@ -54,8 +53,7 @@ const Dashboard = async () => {
                         <div className="flex items-center justify-between space-y-2">
                             <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
                             <div className="flex items-center space-x-2">
-                                <CalendarDateRangePicker />
-                                <Button>Télécharger les données</Button>
+                            <CalendarDate />
                             </div>
                         </div>
                         <Tabs defaultValue="overview" className="space-y-4">

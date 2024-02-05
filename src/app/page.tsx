@@ -12,11 +12,13 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
+import Footer from '@/components/Footer'
 
 export default function Home() {
     return (
         <>
             <Navbar />
+
             <MaxWidthWrapper className='mb-12 mt-28 sm:mt-40 flex flex-col items-center justify-center text-center'>
                 <h1 className='max-w-4xl text-5xl font-bold md:text-6xl lg:text-7xl'>
                     Évaluez votre <span className='text-primary'>Usure Professionnel</span> facilement.
@@ -114,6 +116,8 @@ export default function Home() {
                     </Card>
                 </div>
             </div>
+
+            <Footer />
         </>
     )
 }
