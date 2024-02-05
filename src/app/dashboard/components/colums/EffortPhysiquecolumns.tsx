@@ -1,8 +1,8 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { EffortPhysiqueSchema } from "../data/schema"
-import { DataTableColumnHeader } from "./data-table-column-header"
+import { EffortPhysiqueSchema } from "../../data/schema"
+import { DataTableColumnHeader } from "../data-tables/data-table-column-header"
 
 export const EffortPhysiquecolumns: ColumnDef<EffortPhysiqueSchema>[] = [
   {
