@@ -4,12 +4,12 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@ui/avatar';
 import { Button } from '@ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@ui/dialog';
-import { DataTable } from './Modal-data-table';
-import { EffortMentalcolumns } from './EffortMentalcolumns';
-import { EffortPhysiquecolumns } from './EffortPhysiquecolumns';
-import { Environnementcolumns } from './Environnementcolumns';
-import { HorairesDeTravailcolumns } from './HorairesDeTravailcolumns';
-import { Satisfactioncolumns } from './Satisfactioncolumns';
+import { DataTable } from './data-tables/Modal-data-table';
+import { EffortMentalcolumns } from './colums/EffortMentalcolumns';
+import { EffortPhysiquecolumns } from './colums/EffortPhysiquecolumns';
+import { Environnementcolumns } from './colums/Environnementcolumns';
+import { HorairesDeTravailcolumns } from './colums/HorairesDeTravailcolumns';
+import { Satisfactioncolumns } from './colums/Satisfactioncolumns';
 import * as api from "@/lib/apiRequest/formRequest";
 import { HorairesDeTravail, LEnvironnement, LEffortPhysique, LEffortMental, SatisfactionEtEvolutionDeCarriere } from '@/types/Form';
 
