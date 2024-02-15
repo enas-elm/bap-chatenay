@@ -1,5 +1,3 @@
-import { LEffortMental, LEffortPhysique, LEnvironnement, ResponseType, SatisfactionEtEvolutionDeCarriere } from '@/types/Form';
-import { HorairesDeTravail } from '@/types/Form';
 import { format } from "date-fns";
 
 /* -------------------------------------------------------------------------- */
