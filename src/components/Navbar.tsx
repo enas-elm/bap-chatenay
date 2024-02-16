@@ -29,7 +29,7 @@ const Navbar = async () => {
                         className='flex z-40 font-semibold items-center gap-x-3'>
                         <Image
                             src='/logo.svg'
-                            alt='BAP Chatenay'
+                            alt='Châtenay-Malabry'
                             width={50}
                             height={50}
                             style={{

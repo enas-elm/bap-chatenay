@@ -59,14 +59,14 @@ const Dashboard = async () => {
                         <Tabs defaultValue="overview" className="space-y-4">
                             <TabsList>
                                 <TabsTrigger value="overview">Overview</TabsTrigger>
-                                <TabsTrigger value="reports">All Reports</TabsTrigger>
+                                <TabsTrigger value="reports">Reports</TabsTrigger>
                             </TabsList>
                             <TabsContent value="overview" className="space-y-4">
                                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                                     <Card>
                                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                                             <CardTitle className="text-sm font-medium">
-                                                Nombrer totale d'utilisateurs
+                                                Nombre total d'utilisateurs
                                             </CardTitle>
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"

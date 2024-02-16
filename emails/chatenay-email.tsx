@@ -82,7 +82,7 @@ VercelInviteUserEmail.PreviewProps = {
   username: "M. Jhon Doe",
   invitedByUsername: "Jane Doe",
   inviteLink: "https://calendly.com/vercel/invite?token=secret",
-  inviteFromIp: "Chatenay-Malabry ",
+  inviteFromIp: "Châtenay-Malabry",
   inviteFromLocation: "Paris, France",
 } as VercelInviteUserEmailProps;
 

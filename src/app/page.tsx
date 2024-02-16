@@ -21,11 +21,11 @@ export default function Home() {
 
             <MaxWidthWrapper className='mb-12 mt-28 sm:mt-40 flex flex-col items-center justify-center text-center'>
                 <h1 className='max-w-4xl text-5xl font-bold md:text-6xl lg:text-7xl'>
-                    Évaluez votre <span className='text-primary'>Usure Professionnel</span> facilement.
+                    Découvrez l'Impact de votre Activité avec notre <span className='text-primary'>Diagnostic Professionnel</span>
                 </h1>
 
                 <p className='mt-5 max-w-prose text-zinc-700 sm:text-lg'>
-                    Notre formulaire interactif est conçu pour vous aider à calculer précisément l'utilisation professionnelle de vos ressources. Commencez simplement en saisissant vos informations pour une analyse rapide et personnalisée.
+                    Grâce à notre outil interactif, évaluez avec précision comment votre travail affecte vos ressources et votre bien-être. Entrez vos données pour obtenir instantanément des insights personnalisés et des solutions sur mesure.
                 </p>
 
                 <Link
@@ -49,74 +49,98 @@ export default function Home() {
                     {/* Carte 1 */}
                     <Card className='w-1/4'>
                         <CardHeader>
-                            <CardTitle>Évaluation Précise</CardTitle>
-                            <CardDescription>Détection fiable de l'usure</CardDescription>
+                            <CardTitle>Diagnostic Approfondi</CardTitle>
+                            <CardDescription>Analyse précise et fiable</CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <p>Utilisation d'un formulaire détaillé pour une évaluation précise de votre situation professionnelle.</p>
+                            <p>Notre questionnaire détaillé vous garantit une analyse approfondie de votre bien-être au travail.</p>
                         </CardContent>
                         <CardFooter>
-                            <p>Identification rapide des risques d'usure professionnelle.</p>
+                            <p>Détectez et agissez rapidement face aux signes d'épuisement professionnel.</p>
                         </CardFooter>
                     </Card>
 
                     {/* Carte 2 */}
                     <Card className='w-1/4'>
                         <CardHeader>
-                            <CardTitle>Tableau de Bord Intuitif</CardTitle>
-                            <CardDescription>Suivi et gestion facilités</CardDescription>
+                            <CardTitle>Interface Intuitive</CardTitle>
+                            <CardDescription>Gestion simplifiée de votre santé au travail</CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <p>Accès à un tableau de bord pour suivre vos évaluations et consulter vos progrès.</p>
+                            <p>Visualisez votre évolution et gérez votre profil professionnel grâce à un tableau de bord ergonomique.</p>
                         </CardContent>
                         <CardFooter>
-                            <p>Gestion efficace de votre parcours vers le bien-être professionnel.</p>
+                            <p>Optimisez votre parcours professionnel pour un équilibre durable.</p>
                         </CardFooter>
                     </Card>
 
                     {/* Carte 3 */}
                     <Card className='w-1/4'>
                         <CardHeader>
-                            <CardTitle>Ressources Utiles</CardTitle>
-                            <CardDescription>Accès à des informations clés</CardDescription>
+                            <CardTitle>Boîte à Outils Complète</CardTitle>
+                            <CardDescription>Ressources enrichissantes à portée de main</CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <p>Obtenez des ressources approfondies pour comprendre et combattre l'usure professionnelle.</p>
+                            <p>Explorez une vaste sélection de ressources pour combattre efficacement l'usure professionnelle.</p>
                         </CardContent>
                         <CardFooter>
-                            <p>Guides, articles, et conseils pratiques à votre disposition.</p>
+                            <p>Accédez à des guides exclusifs, articles experts, et astuces pratiques.</p>
                         </CardFooter>
                     </Card>
+
                     {/* Carte 4 */}
                     <Card className='w-1/4'>
                         <CardHeader>
-                            <CardTitle>Support Spécialisé</CardTitle>
-                            <CardDescription>Accompagnement personnalisé</CardDescription>
+                            <CardTitle>Conseil Personnalisé</CardTitle>
+                            <CardDescription>Soutien expert sur-mesure</CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <p>Accès direct à des experts pour obtenir des conseils et un soutien personnalisés.</p>
+                            <p>Bénéficiez de l'expertise de nos conseillers pour un accompagnement adapté à vos besoins.</p>
                         </CardContent>
                         <CardFooter>
-                            <p>Solutions adaptées à votre situation spécifique.</p>
+                            <p>Des réponses concrètes et personnalisées pour chaque défi professionnel.</p>
                         </CardFooter>
                     </Card>
 
                     {/* Carte 5 */}
                     <Card className='w-1/4'>
                         <CardHeader>
-                            <CardTitle>Prévention et Sensibilisation</CardTitle>
-                            <CardDescription>Agir avant l'apparition du problème</CardDescription>
+                            <CardTitle>Stratégies Préventives</CardTitle>
+                            <CardDescription>Éduquez-vous pour une carrière saine</CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <p>Apprenez à reconnaître et à prévenir l'usure professionnelle avant qu'elle ne s'aggrave.</p>
+                            <p>Initiez-vous aux meilleures pratiques pour anticiper et prévenir l'usure professionnelle.</p>
                         </CardContent>
                         <CardFooter>
-                            <p>Des stratégies proactives pour maintenir une santé professionnelle durable.</p>
+                            <p>Adoptez une approche proactive pour une santé professionnelle optimale.</p>
                         </CardFooter>
                     </Card>
                 </div>
             </div>
 
+            <MaxWidthWrapper className='mb-12 mt-5 flex flex-col items-center justify-center'>
+                    <Image 
+                        src={'/team.jpg'}
+                        alt='team'
+                        width={800}
+                        height={500}
+                        className='rounded-lg mb-7'
+                    />
+
+                <h3 className='max-w-xl text-m font-bold md:text-xl lg:text-xl'>
+                    Rencontrez Nos Experts Dédiés
+                </h3>
+
+                <p className='mt-5 max-w-prose text-zinc-700 sm:text-m'>
+                    Après soumission de votre formulaire, vous serez entre de bonnes mains. Notre équipe d'agents, composée de professionnels expérimentés et passionnés, est prête à analyser vos réponses avec le plus grand soin. Spécialisés dans l'évaluation de l'usure professionnelle, ils utilisent une approche personnalisée pour chaque dossier, garantissant ainsi des conseils précis et adaptés à votre situation unique.
+                    <br /><br />
+
+                    Notre promesse ? Une prise en charge complète et empathique. Nous comprenons l'importance de votre bien-être au travail et nous nous engageons à vous fournir un soutien sur-mesure. Grâce à leur expertise et leur écoute, nos agents élaborent des stratégies efficaces pour vous aider à naviguer vers un équilibre professionnel optimal.
+                    <br /><br />
+
+                    Avec une réactivité sans faille, notre équipe s'assure que chaque question trouve sa réponse, chaque préoccupation est adressée. Nous sommes là pour vous accompagner dans votre parcours, offrant non seulement des solutions, mais aussi un véritable partenariat dans la gestion de votre carrière.
+                </p>
+            </MaxWidthWrapper>
             <Footer />
         </>
     )

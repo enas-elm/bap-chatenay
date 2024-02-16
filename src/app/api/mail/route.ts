@@ -10,7 +10,7 @@ export const POST = async (req: Request) => {
         const payload = await req.json();
 
         const { data, error } = await resend.emails.send({
-            from: 'Chatenay-Malabry<onboarding@resend.dev>',
+            from: 'Châtenay-Malabry<onboarding@resend.dev>',
             to: ['patrick.bartosik@edu.devinci.fr'],
             subject: 'Confirmation de traitement de votre formulaire - Opportunité de rendez-vous personnalisé',
             react: VercelInviteUserEmail(
@@ -18,7 +18,7 @@ export const POST = async (req: Request) => {
                     username: payload.username,
                     invitedByUsername: payload.invitedByUsername,
                     inviteLink: "https://calendly.com/vercel/invite?token=secret",
-                    inviteFromIp: "Chatenay-Malabry",
+                    inviteFromIp: "Châtenay-Malabry",
                     inviteFromLocation: "Paris, France",
                 }
             ),
