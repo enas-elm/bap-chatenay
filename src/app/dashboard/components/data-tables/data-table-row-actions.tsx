@@ -21,6 +21,8 @@ import {
 import { labels } from "../../data/data"
 import { taskSchema } from "../../data/schema"
 
+import { sendEmail }  from "@/lib/apiRequest/formRequest"
+
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
 }
@@ -29,6 +31,17 @@ export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
   const task = taskSchema.parse(row.original)
+
+  const sendEmailToUser = async () => {
+    const response = await sendEmail({
+      username: task.email,
+      invitedByUsername: task.email,
+    })
+
+    if (!response){
+      return alert("Error sending email")
+    }
+  }
 
   return (
     <DropdownMenu>
@@ -43,7 +56,7 @@ export function DataTableRowActions<TData>({
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
         <DropdownMenuItem>Édite</DropdownMenuItem>
-        <DropdownMenuItem>Send Email</DropdownMenuItem>
+        <DropdownMenuItem onClick={sendEmailToUser}>Send Email</DropdownMenuItem>
         <DropdownMenuItem>Check Report</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuSub>
