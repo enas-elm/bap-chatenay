@@ -38,6 +38,9 @@
       "@types/*": [
         "./src/types/*"
       ],
+      "@email/*": [
+        "./emails/*"
+      ],
     }
   },
   "include": [

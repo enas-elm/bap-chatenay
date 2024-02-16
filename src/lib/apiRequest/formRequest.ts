@@ -1,5 +1,3 @@
-import { LEffortMental, LEffortPhysique, LEnvironnement, ResponseType, SatisfactionEtEvolutionDeCarriere } from '@/types/Form';
-import { HorairesDeTravail } from '@/types/Form';
 import { format } from "date-fns";
 
 /* -------------------------------------------------------------------------- */
@@ -412,6 +410,38 @@ export const getDatePickRange = async (date: any) => {
         return {
             status: 500,
             message: 'Internal server error (getDatePickRange)',
+            error: error
+        }
+    }
+}
+
+
+/* --------------------------------- MAILEUR -------------------------------- */
+
+export const sendEmail = async (data: any) => {
+    try {
+        const payload = {
+            username: data.username,
+            invitedByUsername: data.invitedByUsername,
+        }
+
+        const response = await fetch('api/mail', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+        const dataResponse = await response.json();
+        return {
+            status: 'success',
+            message: 'Email sent',
+            body: dataResponse
+        };
+    } catch (error) {
+        return {
+            status: 500,
+            message: 'Internal server error (sendEmail)',
             error: error
         }
     }
