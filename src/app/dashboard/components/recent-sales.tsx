@@ -239,7 +239,7 @@ export function RecentSales() {
 
     return (
         <div className="space-y-8">
-            rr
+            {latestResponses.map(response => renderResponseItem(response))}
         </div>
     );
 }
