@@ -7,7 +7,7 @@ const Footer = () => {
                 <div className="flex flex-col items-center justify-center">
                     <div className="flex flex-row items-center justify-center">
                         <div className="flex flex-col items-center justify-center">
-                            <h1 className="text-3xl font-bold text-white">Usure Professionnelle</h1>
+                            <h1 className="text-xl font-bold text-white">Usure Professionnelle</h1>
                             <p className="text-white">© 2021 Usure Professionnelle</p>
                         </div>
                     </div>
