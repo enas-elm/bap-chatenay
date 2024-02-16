@@ -22,6 +22,7 @@ import { labels } from "../../data/data"
 import { taskSchema } from "../../data/schema"
 
 import { sendEmail }  from "@/lib/apiRequest/formRequest"
+import { useToast } from "@/components/ui/use-toast"
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
@@ -31,6 +32,7 @@ export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
   const task = taskSchema.parse(row.original)
+  const { toast } = useToast()
 
   const sendEmailToUser = async () => {
     const response = await sendEmail({
@@ -38,8 +40,11 @@ export function DataTableRowActions<TData>({
       invitedByUsername: task.email,
     })
 
-    if (!response){
-      return alert("Error sending email")
+    if(response.status === "success"){
+      toast({
+        title: "Email Sent",
+        description: `Email sent to ${task.email}`,
+      })
     }
   }
 
